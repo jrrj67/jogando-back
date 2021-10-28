@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "8z9Z4+QARLbTeAOMLebGUvaJhf0/4UFmHX/4fFOlK8Q=",
+  "Source": "TheTruth.Api",
+  "BasePath": "_content/TheTruth.Api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
