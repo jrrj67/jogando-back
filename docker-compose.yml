@@ -1,7 +1,13 @@
 version: '3.4'
 
 services:
-
+  
+  thetruth.api:
+    image: ${DOCKER_REGISTRY-}thetruthapi
+    build:
+      context: .
+      dockerfile: TheTruth.Api/Dockerfile
+  
   db:
     image: mysql:5.7
     restart: always
@@ -22,12 +28,6 @@ services:
       # Where our data will be persisted
     volumes:
       - my-db:/var/lib/mysql
-
-  mywebapi:
-    image: ${DOCKER_REGISTRY-}mywebapi
-    build:
-      context: .
-      dockerfile: MyWebAPI/Dockerfile
 
 # Names our volume
 volumes:
