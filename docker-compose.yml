@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  thetruth.api:
+    image: ${DOCKER_REGISTRY-}thetruthapi
+    build:
+      context: .
+      dockerfile: TheTruth.Api/Dockerfile
