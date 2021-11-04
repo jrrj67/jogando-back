@@ -1,11 +1,11 @@
-﻿using FluentValidation;
+﻿using api.Data.Requests;
+using api.Data.Responses;
+using api.Data.Services;
+using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Threading.Tasks;
-using api.Data.Requests;
-using api.Data.Responses;
-using api.Data.Services;
 
 namespace api.Controllers
 {

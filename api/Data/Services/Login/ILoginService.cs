@@ -1,4 +1,4 @@
-﻿namespace api.Data.Services
+﻿namespace api.Data.Services.Login
 {
     public interface ILoginService<LoginResponse, LoginRequest>
     {

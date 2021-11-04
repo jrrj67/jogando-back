@@ -1,3 +1,6 @@
+using api.Data.Contexts;
+using api.Data.DependecyInjections;
+using api.Data.Services.Token;
 using FluentValidation.AspNetCore;
 using MicroElements.Swashbuckle.FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -9,11 +12,6 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System;
-using api.Data.Contexts;
-using api.Data.DependecyInjections;
-using api.Data.Requests;
-using api.Data.Responses;
-using api.Data.Services;
 
 namespace api
 {
@@ -61,9 +59,11 @@ namespace api
 
             services.AddFluentValidationRulesToSwagger();
 
-            services.AddTransient<ITokenService, TokenService>();
+            PasswordHasherDI.RegisterDependencies(services);
 
-            services.AddTransient<ILoginService<LoginResponse, LoginRequest>, LoginService>();
+            LoginDI.RegisterDependencies(services);
+
+            TokenDI.RegisterDependencies(services);
 
             UsersDI.RegisterDependencies(services);
 

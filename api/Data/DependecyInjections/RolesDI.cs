@@ -1,11 +1,12 @@
-﻿using FluentValidation;
-using Microsoft.Extensions.DependencyInjection;
-using api.Data.Entities;
+﻿using api.Data.Entities;
 using api.Data.Repositories;
 using api.Data.Requests;
 using api.Data.Responses;
 using api.Data.Services;
+using api.Data.Services.Roles;
 using api.Data.Validators;
+using FluentValidation;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace api.Data.DependecyInjections
 {

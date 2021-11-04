@@ -1,5 +1,5 @@
-﻿using FluentValidation;
-using api.Data.Requests;
+﻿using api.Data.Requests;
+using FluentValidation;
 
 namespace api.Data.Validators
 {

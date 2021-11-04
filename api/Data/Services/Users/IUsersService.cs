@@ -1,4 +1,4 @@
-﻿namespace api.Data.Services
+﻿namespace api.Data.Services.Users
 {
     public interface IUsersService<Response, Request> : IBaseService<Response, Request>
     {

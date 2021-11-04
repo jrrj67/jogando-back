@@ -1,6 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using api.Data.Models;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
-using api.Data.Models;
 
 namespace api.Data.Entities
 {

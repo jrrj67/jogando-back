@@ -1,7 +1,7 @@
-﻿using Microsoft.Extensions.Configuration;
-using api.Data.Entities;
+﻿using api.Data.Entities;
+using Microsoft.Extensions.Configuration;
 
-namespace api.Data.Services
+namespace api.Data.Services.Token
 {
     public interface ITokenService
     {

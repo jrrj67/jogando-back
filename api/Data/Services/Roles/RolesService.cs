@@ -1,12 +1,12 @@
-﻿using AutoMapper;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using api.Data.Entities;
+﻿using api.Data.Entities;
 using api.Data.Repositories;
 using api.Data.Requests;
 using api.Data.Responses;
+using AutoMapper;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
-namespace api.Data.Services
+namespace api.Data.Services.Roles
 {
     public class RolesService : IBaseService<RolesResponse, RolesRequest>
     {

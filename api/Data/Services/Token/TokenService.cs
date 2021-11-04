@@ -1,12 +1,12 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using api.Data.Entities;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using api.Data.Entities;
 
-namespace api.Data.Services
+namespace api.Data.Services.Token
 {
     public class TokenService : ITokenService
     {

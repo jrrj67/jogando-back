@@ -1,11 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using api.Data.Entities;
+using api.Data.Models;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using api.Data.Entities;
-using api.Data.Models;
 
 namespace api.Data.Contexts
 {

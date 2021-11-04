@@ -1,7 +1,7 @@
-﻿using AutoMapper;
-using api.Data.Entities;
+﻿using api.Data.Entities;
 using api.Data.Requests;
 using api.Data.Responses;
+using AutoMapper;
 
 namespace api.Data.Profiles
 {
