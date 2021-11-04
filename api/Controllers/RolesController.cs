@@ -59,10 +59,6 @@ namespace api.Controllers
             {
                 return Ok(await _rolesService.SaveAsync(request));
             }
-            catch (ValidationException ex)
-            {
-                return BadRequest(ex.Errors);
-            }
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
@@ -75,10 +71,6 @@ namespace api.Controllers
             try
             {
                 return Ok(await _rolesService.UpdateAsync(id, request));
-            }
-            catch (ValidationException ex)
-            {
-                return BadRequest(ex.Errors);
             }
             catch (ArgumentException ex)
             {

@@ -27,16 +27,6 @@ namespace api.Data.Services.Login
         {
             var userEntity = _repository.GetUserByEmail(loginRequest.Email);
 
-            if (userEntity == null)
-            {
-                throw new ArgumentException("User doesn't exist.");
-            }
-
-            if (!_passwordHasher.Verify(loginRequest.Password, userEntity.Password))
-            {
-                throw new ArgumentException("Wrong credentials.");
-            }
-
             var token = _tokenService.GenerateToken(userEntity);
 
             var userResponse = _mapper.Map<UsersResponse>(userEntity);
@@ -46,6 +36,23 @@ namespace api.Data.Services.Login
                 UserResponse = userResponse,
                 Token = token
             };
+        }
+
+        public bool VerifyEmailAndPassword(string email, string password)
+        {
+            var user = _repository.GetUserByEmail(email);
+
+            if (user == null)
+            {
+                return false;
+            }
+
+            if (!_passwordHasher.Verify(password, user.Password))
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }

@@ -28,10 +28,6 @@ namespace api.Controllers
                 var response = _loginService.Login(loginRequest);
                 return Ok(response);
             }
-            catch (ArgumentException ex)
-            {
-                return BadRequest(ex.Message);
-            }
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
