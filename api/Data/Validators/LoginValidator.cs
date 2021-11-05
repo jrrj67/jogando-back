@@ -1,7 +1,6 @@
 ﻿using api.Data.Requests;
 using api.Data.Responses;
 using api.Data.Services.Login;
-using api.Data.Services.Users;
 using FluentValidation;
 
 namespace api.Data.Validators
@@ -16,7 +15,7 @@ namespace api.Data.Validators
 
             RuleFor(field => field.Email)
                 .NotNull();
-            
+
             RuleFor(field => field.Password)
                 .NotNull();
 

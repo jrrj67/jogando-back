@@ -1,7 +1,6 @@
 ﻿using api.Data.Requests;
 using api.Data.Responses;
 using api.Data.Services.Users;
-using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;

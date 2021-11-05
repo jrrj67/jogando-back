@@ -4,7 +4,6 @@ using api.Data.Responses;
 using api.Data.Services.PasswordHasher;
 using api.Data.Services.Token;
 using AutoMapper;
-using System;
 
 namespace api.Data.Services.Login
 {
