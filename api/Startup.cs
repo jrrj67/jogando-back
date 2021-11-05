@@ -46,6 +46,8 @@ namespace api
                 };
             });
 
+            services.AddHttpContextAccessor();
+
             services.AddDbContext<ApplicationDbContext>();
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());

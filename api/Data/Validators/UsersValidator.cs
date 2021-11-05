@@ -2,16 +2,23 @@
 using api.Data.Responses;
 using api.Data.Services.Users;
 using FluentValidation;
+using Microsoft.AspNetCore.Http;
 
 namespace api.Data.Validators
 {
     public class UsersValidator : AbstractValidator<UsersRequest>
     {
         private readonly IUsersService<UsersResponse, UsersRequest> _usersService;
+        
+        private readonly IHttpContextAccessor _httpContexAccessor;
 
-        public UsersValidator(IUsersService<UsersResponse, UsersRequest> usersService)
+        public UsersValidator(IUsersService<UsersResponse, UsersRequest> usersService, IHttpContextAccessor httpContexAccessor)
         {
             _usersService = usersService;
+
+            _httpContexAccessor = httpContexAccessor;
+
+            int userId = GetUserIdFromPath(_httpContexAccessor.HttpContext.Request.Path.Value);
 
             RuleFor(field => field.Name)
                 .MinimumLength(2)
@@ -27,11 +34,18 @@ namespace api.Data.Validators
                 .EmailAddress()
                 .NotNull()
                 .MaximumLength(100)
-                .Must(email => _usersService.IsUniqueEmail(email))
+                .Must(email => _usersService.IsUniqueEmail(email, userId))
                 .WithMessage("Email already exists.");
 
             RuleFor(field => field.RoleId)
                 .NotNull();
+        }
+
+        public int GetUserIdFromPath(string path)
+        {
+            int userId;
+            int.TryParse(path.Replace("/api/users/", ""), out userId);
+            return userId;
         }
     }
 }

@@ -55,9 +55,9 @@ namespace api.Data.Services.Users
             await _repository.DeleteAsync(id);
         }
 
-        public bool IsUniqueEmail(string email)
+        public bool IsUniqueEmail(string email, int userId)
         {
-            return _repository.IsUniqueEmail(email);
+            return _repository.IsUniqueEmail(email, userId);
         }
     }
 }

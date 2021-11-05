@@ -20,7 +20,8 @@ namespace api.Data.Entities
             modelBuilder.Entity<UsersEntity>()
                 .HasOne(u => u.Role)
                 .WithMany(r => r.Users)
-                .HasForeignKey(u => u.RoleId);
+                .HasForeignKey(u => u.RoleId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

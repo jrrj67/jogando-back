@@ -10,9 +10,9 @@ namespace api.Data.Repositories.Users
         {
         }
 
-        public bool IsUniqueEmail(string email)
+        public bool IsUniqueEmail(string email, int userId)
         {
-            return !_context.Set<UsersEntity>().Where(u => u.Email == email).Any();
+            return !_context.Set<UsersEntity>().Where(u => u.Email == email && u.Id != userId).Any();
         }
 
         public UsersEntity GetUserByEmail(string email)
