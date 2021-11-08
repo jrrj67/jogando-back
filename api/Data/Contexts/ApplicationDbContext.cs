@@ -24,7 +24,7 @@ namespace api.Data.Contexts
         {
             optionsBuilder
                 .UseLazyLoadingProxies()
-                .UseMySQL(Configuration.GetConnectionString("Default"));
+                .UseSqlServer(Configuration.GetConnectionString("Default"));
 
             base.OnConfiguring(optionsBuilder);
         }
