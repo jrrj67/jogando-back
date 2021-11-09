@@ -9,7 +9,7 @@ namespace api.Data.Validators
     public class UsersValidator : AbstractValidator<UsersRequest>
     {
         private readonly IUsersService<UsersResponse, UsersRequest> _usersService;
-        
+
         private readonly IHttpContextAccessor _httpContexAccessor;
 
         public UsersValidator(IUsersService<UsersResponse, UsersRequest> usersService, IHttpContextAccessor httpContexAccessor)
