@@ -52,5 +52,60 @@ namespace tests
 
             var response = Assert.IsType<BadRequestObjectResult>(result);
         }
+
+        [Theory]
+        [InlineData(1)]
+        public void GetById_ReturnsSingleEntryAndIdIsTheSame(int id)
+        {
+            _mockService.Setup(service => service.GetById(id)).Returns(new RolesResponse()
+            {
+                Id = id,
+                Name = "Test"
+            });
+
+            var result = _controller.GetById(id);
+
+            // Testing response return
+            var response = Assert.IsType<OkObjectResult>(result);
+
+            // Testing if there is only one entry
+            var role = Assert.IsType<RolesResponse>(response.Value);
+
+            // Testing if provided id is the same of the returned entry
+            Assert.Equal(id, role.Id);
+        }
+
+        [Theory]
+        [InlineData(1)]
+        public void GetById_ReturnsNotFoundIfArgumentExceptionIsThrown(int id)
+        {
+            _mockService.Setup(service => service.GetById(id)).Throws(new ArgumentException("Test"));
+
+            var result = _controller.GetById(id);
+
+            // Testing response return
+            var response = Assert.IsType<NotFoundObjectResult>(result);
+        }
+
+        [Theory]
+        [InlineData(1)]
+        public void GetById_ReturnsBadRequestIfExceptionIsThrown(int id)
+        {
+            _mockService.Setup(service => service.GetById(id)).Throws(new Exception("Test"));
+
+            var result = _controller.GetById(id);
+
+            // Testing response return
+            var response = Assert.IsType<BadRequestObjectResult>(result);
+        }
+
+        [Fact]
+        public void SaveAsync_ReturnsCreatedResponse()
+        {
+            var request = new RolesRequest()
+            {
+                Name = "Test",
+            };
+        }
     }
 }
