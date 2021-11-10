@@ -2,11 +2,16 @@ using api.Controllers;
 using api.Data.Requests;
 using api.Data.Responses;
 using api.Data.Services;
+using api.Data.Utils;
+using api.Data.Validators;
+using FluentValidation;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Moq;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace tests
@@ -27,6 +32,8 @@ namespace tests
         [Fact]
         public void GetAll_ReturnsExactNumberOfRoles()
         {
+            // Setup
+
             _mockService.Setup(service => service.GetAll()).Returns(new List<RolesResponse>()
             {
                 new RolesResponse(),
@@ -49,6 +56,8 @@ namespace tests
         [Fact]
         public void GetAll_ReturnsBadRequestIfExceptionIsThrown()
         {
+            // Setup
+
             _mockService.Setup(service => service.GetAll()).Throws(new Exception("Test"));
 
             var result = _controller.GetAll();
@@ -61,6 +70,8 @@ namespace tests
         [InlineData(1)]
         public void GetById_ReturnsSingleEntryAndIdIsTheSame(int id)
         {
+            // Setup
+
             _mockService.Setup(service => service.GetById(id)).Returns(new RolesResponse()
             {
                 Id = id,
@@ -83,6 +94,8 @@ namespace tests
         [InlineData(1)]
         public void GetById_ReturnsNotFoundIfArgumentExceptionIsThrown(int id)
         {
+            // Setup
+
             _mockService.Setup(service => service.GetById(id)).Throws(new ArgumentException("Test"));
 
             var result = _controller.GetById(id);
@@ -95,6 +108,8 @@ namespace tests
         [InlineData(1)]
         public void GetById_ReturnsBadRequestIfExceptionIsThrown(int id)
         {
+            // Setup
+
             _mockService.Setup(service => service.GetById(id)).Throws(new Exception("Test"));
 
             var result = _controller.GetById(id);
@@ -104,12 +119,51 @@ namespace tests
         }
 
         [Fact]
-        public void SaveAsync_ReturnsCreatedResponse()
+        public async void SaveAsync_ReturnsCreatedResponseWithLocation()
         {
-            var request = new RolesRequest()
-            {
-                Name = "Test",
-            };
+            // Setup
+
+            var roleId = 1;
+            
+            var request = new RolesRequest();
+
+            _mockService.Setup(service => service.SaveAsync(request)).ReturnsAsync(new RolesResponse() { Id = roleId, Name = "Test" });
+
+            var scheme = "https";
+
+            var host = "localhost";
+
+            var path = "/api/roles";
+
+            _controller.ControllerContext.HttpContext = MockObjects.GetMockHttpContext(scheme, host, path);
+
+            var uri = _controller.ControllerContext.HttpContext.Request.GetAbsoluteUri();
+
+            var result = await _controller.SaveAsync(request);
+
+            // Testing response return
+            
+            var response = Assert.IsType<CreatedResult>(result);
+
+            // Testing location header
+            
+            Assert.Equal($"{uri}/{roleId}", response.Location);
+        }
+
+        [Fact]
+        public async void SaveAsync_ReturnsBadRequestIfExceptionIsThrown()
+        {
+            // Setup
+
+            var request = new RolesRequest();
+
+            _mockService.Setup(service => service.SaveAsync(request)).Throws(new Exception("Test"));
+
+            var result = await _controller.SaveAsync(request);
+
+            // Testing response return
+
+            var response = Assert.IsType<BadRequestObjectResult>(result);
         }
     }
 }
