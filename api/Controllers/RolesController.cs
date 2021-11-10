@@ -1,6 +1,8 @@
 ﻿using api.Data.Requests;
 using api.Data.Responses;
 using api.Data.Services;
+using api.Data.Utils;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -56,7 +58,8 @@ namespace api.Controllers
         {
             try
             {
-                return Ok(await _rolesService.SaveAsync(request));
+                var response = await _rolesService.SaveAsync(request);
+                return Created(HttpContext.Request.GetAbsoluteUri() + $"/{response.Id}", "Created.");
             }
             catch (Exception ex)
             {
@@ -69,7 +72,8 @@ namespace api.Controllers
         {
             try
             {
-                return Ok(await _rolesService.UpdateAsync(id, request));
+                await _rolesService.UpdateAsync(id, request);
+                return Ok("Updated.");
             }
             catch (ArgumentException ex)
             {
@@ -87,7 +91,7 @@ namespace api.Controllers
             try
             {
                 await _rolesService.DeleteAsync(id);
-                return Ok();
+                return Ok("Deleted.");
             }
             catch (ArgumentException ex)
             {

@@ -36,10 +36,13 @@ namespace tests
 
             var result = _controller.GetAll();
 
-            var response = Assert.IsAssignableFrom<IActionResult>(result);
+            // Testing response return
+            var response = Assert.IsType<OkObjectResult>(result);
 
-            var roles = Assert.IsType<List<RolesResponse>>(((OkObjectResult)response).Value);
+            // Testing if there are a list of RolesResponse
+            var roles = Assert.IsType<List<RolesResponse>>(response.Value);
 
+            // Testing if the number of entries returned by service is the same of the response
             Assert.Equal(3, roles.Count);
         }
 
@@ -50,6 +53,7 @@ namespace tests
 
             var result = _controller.GetAll();
 
+            // Testing response return
             var response = Assert.IsType<BadRequestObjectResult>(result);
         }
 
