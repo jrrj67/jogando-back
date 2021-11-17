@@ -3,15 +3,11 @@ using api.Data.Requests;
 using api.Data.Responses;
 using api.Data.Services;
 using api.Data.Utils;
-using api.Data.Validators;
-using FluentValidation;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Moq;
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace tests
@@ -124,7 +120,7 @@ namespace tests
             // Setup
 
             var roleId = 1;
-            
+
             var request = new RolesRequest();
 
             _mockService.Setup(service => service.SaveAsync(request)).ReturnsAsync(new RolesResponse() { Id = roleId, Name = "Test" });
@@ -142,11 +138,11 @@ namespace tests
             var result = await _controller.SaveAsync(request);
 
             // Testing response return
-            
+
             var response = Assert.IsType<CreatedResult>(result);
 
             // Testing location header
-            
+
             Assert.Equal($"{uri}/{roleId}", response.Location);
         }
 
