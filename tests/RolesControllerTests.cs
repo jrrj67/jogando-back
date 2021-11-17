@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using Moq;
 using System;
 using System.Collections.Generic;
+using tests.Utils;
 using Xunit;
 
 namespace tests
@@ -40,12 +41,15 @@ namespace tests
             var result = _controller.GetAll();
 
             // Testing response return
+            
             var response = Assert.IsType<OkObjectResult>(result);
 
             // Testing if there are a list of RolesResponse
+            
             var roles = Assert.IsType<List<RolesResponse>>(response.Value);
 
             // Testing if the number of entries returned by service is the same of the response
+            
             Assert.Equal(3, roles.Count);
         }
 
@@ -59,6 +63,7 @@ namespace tests
             var result = _controller.GetAll();
 
             // Testing response return
+            
             var response = Assert.IsType<BadRequestObjectResult>(result);
         }
 
@@ -77,12 +82,15 @@ namespace tests
             var result = _controller.GetById(id);
 
             // Testing response return
+            
             var response = Assert.IsType<OkObjectResult>(result);
 
             // Testing if there is only one entry
+            
             var role = Assert.IsType<RolesResponse>(response.Value);
 
             // Testing if provided id is the same of the returned entry
+            
             Assert.Equal(id, role.Id);
         }
 
@@ -97,6 +105,7 @@ namespace tests
             var result = _controller.GetById(id);
 
             // Testing response return
+            
             var response = Assert.IsType<NotFoundObjectResult>(result);
         }
 
@@ -111,6 +120,7 @@ namespace tests
             var result = _controller.GetById(id);
 
             // Testing response return
+            
             var response = Assert.IsType<BadRequestObjectResult>(result);
         }
 
@@ -125,13 +135,8 @@ namespace tests
 
             _mockService.Setup(service => service.SaveAsync(request)).ReturnsAsync(new RolesResponse() { Id = roleId, Name = "Test" });
 
-            var scheme = "https";
-
-            var host = "localhost";
-
-            var path = "/api/roles";
-
-            _controller.ControllerContext.HttpContext = MockObjects.GetMockHttpContext(scheme, host, path);
+            _controller.ControllerContext.HttpContext = MockObjects.GetMockHttpContext(MockHttpContextConfig.Scheme, MockHttpContextConfig.Host,
+                MockHttpContextConfig.Path);
 
             var uri = _controller.ControllerContext.HttpContext.Request.GetAbsoluteUri();
 
