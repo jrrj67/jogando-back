@@ -31,15 +31,10 @@ namespace api.Data.Services.Token
                 new Claim(ClaimTypes.Role, userEntity.Role.Name)
             };
 
-            var issuer = Configuration.GetValue<string>("Token:Issuer");
+            var tokenConfiguration = GetTokenConfiguration(Configuration);
 
-            var audience = Configuration.GetValue<string>("Token:Audience");
-
-            var notBefore = DateTime.UtcNow;
-
-            var expiration = DateTime.UtcNow.AddHours(Convert.ToInt32(Configuration.GetValue<string>("Token:Expiration")));
-
-            var token = new JwtSecurityToken(issuer, audience, claims, notBefore, expiration, credentials);
+            var token = new JwtSecurityToken(tokenConfiguration.Issuer, tokenConfiguration.Audience, claims, tokenConfiguration.NotBefore,
+                tokenConfiguration.Expiration, credentials);
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
@@ -47,6 +42,17 @@ namespace api.Data.Services.Token
         public static byte[] GetSecretKey(IConfiguration configuration)
         {
             return Encoding.UTF8.GetBytes(configuration.GetValue<string>("Secret"));
+        }
+        
+        public static TokenConfiguration GetTokenConfiguration(IConfiguration configuration)
+        {
+            return new TokenConfiguration()
+            {
+                Issuer = configuration.GetValue<string>("Token:Issuer"),
+                Audience = configuration.GetValue<string>("Token:Audience"),
+                NotBefore = DateTime.UtcNow,
+                Expiration = DateTime.UtcNow.AddHours(Convert.ToInt32(configuration.GetValue<string>("Token:Expiration")))
+            };
         }
     }
 }
