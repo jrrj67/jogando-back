@@ -32,7 +32,7 @@ namespace api.Data.Services.Login
 
             return new LoginResponse
             {
-                UserResponse = userResponse,
+                User = userResponse,
                 Token = token
             };
         }
