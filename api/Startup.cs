@@ -105,10 +105,7 @@ namespace api
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "api v1"));
             }
             
-            if (env.IsProduction())
-            {
-                context.Database.Migrate();
-            }
+            context.Database.Migrate();
 
             app.UseHttpsRedirection();
 
