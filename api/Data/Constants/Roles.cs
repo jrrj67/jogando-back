@@ -5,15 +5,17 @@ namespace api.Data.Constants
 {
     public class Roles
     {
-        public static RolesEntity Admin 
-        { 
+        public const string AdminName = "admin";
+
+        public static RolesEntity Admin
+        {
             get => new RolesEntity()
-            { 
-                Id = 1, 
-                Name = "admin",
+            {
+                Id = 1,
+                Name = AdminName,
                 CreatedAt = DateTime.UtcNow,
                 UpdatedAt = DateTime.UtcNow
-            }; 
+            };
         }
     }
 }

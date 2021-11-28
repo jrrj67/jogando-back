@@ -2,7 +2,6 @@
 using api.Data.Responses;
 using api.Data.Services.Users;
 using api.Data.Utils;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;

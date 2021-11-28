@@ -36,9 +36,11 @@ namespace api.Data.Contexts
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             var usersEntity = new UsersEntity(Configuration, _passwordHasher);
-            usersEntity.OnModelCreating(modelBuilder);
+            var rolesEntity = new RolesEntity();
 
-            RolesEntity.OnModelCreating(modelBuilder);
+
+            usersEntity.OnModelCreating(modelBuilder);
+            rolesEntity.OnModelCreating(modelBuilder);
 
             base.OnModelCreating(modelBuilder);
         }

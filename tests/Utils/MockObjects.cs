@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 
-namespace api.Data.Utils
+namespace tests.Utils
 {
     public class MockObjects
     {

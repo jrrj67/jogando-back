@@ -1,7 +1,6 @@
 ﻿using api.Data.Constants;
 using api.Data.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 
 namespace api.Data.Entities
@@ -10,7 +9,7 @@ namespace api.Data.Entities
     {
         public virtual ICollection<UsersEntity> Users { get; set; }
 
-        public static void OnModelCreating(ModelBuilder modelBuilder)
+        public void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<RolesEntity>().HasKey(t => t.Id);
 

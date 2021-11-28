@@ -17,9 +17,9 @@ namespace api.Data.Constants
             _passwordHasher = passwordHasher;
         }
 
-        public UsersEntity Admin 
-        { 
-            get => new UsersEntity() 
+        public UsersEntity Admin
+        {
+            get => new UsersEntity()
             {
                 Id = 1,
                 Name = Configuration.GetValue<string>("AdminCredentials:Name"),
@@ -28,7 +28,7 @@ namespace api.Data.Constants
                 RoleId = Roles.Admin.Id,
                 CreatedAt = DateTime.UtcNow,
                 UpdatedAt = DateTime.UtcNow
-            }; 
+            };
         }
     }
 }

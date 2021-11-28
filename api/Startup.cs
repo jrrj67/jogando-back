@@ -65,7 +65,7 @@ namespace api
                     In = ParameterLocation.Header,
                     Description = "JWT Authorization header using the Bearer scheme. \r\n\r\n Enter 'Bearer' [space] and then your token in the text input below.\r\n\r\nExample: \"Bearer 12345abcdef\"",
                 });
-                
+
                 c.AddSecurityRequirement(new OpenApiSecurityRequirement
                 {
                     {
@@ -104,7 +104,7 @@ namespace api
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "api v1"));
             }
-            
+
             context.Database.Migrate();
 
             app.UseHttpsRedirection();

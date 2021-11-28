@@ -43,7 +43,7 @@ namespace api.Data.Services.Token
         {
             return Encoding.UTF8.GetBytes(configuration.GetValue<string>("Secret"));
         }
-        
+
         public static TokenConfiguration GetTokenConfiguration(IConfiguration configuration)
         {
             return new TokenConfiguration()

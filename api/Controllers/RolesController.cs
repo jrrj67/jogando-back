@@ -1,7 +1,9 @@
-﻿using api.Data.Requests;
+﻿using api.Data.Constants;
+using api.Data.Requests;
 using api.Data.Responses;
 using api.Data.Services;
 using api.Data.Utils;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -24,6 +26,7 @@ namespace api.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = Roles.AdminName)]
         public IActionResult GetAll()
         {
             try
@@ -37,6 +40,7 @@ namespace api.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles = Roles.AdminName)]
         public IActionResult GetById(int id)
         {
             try
@@ -54,6 +58,7 @@ namespace api.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = Roles.AdminName)]
         public async Task<IActionResult> SaveAsync(RolesRequest request)
         {
             try
@@ -68,6 +73,7 @@ namespace api.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = Roles.AdminName)]
         public async Task<IActionResult> UpdateAsync(int id, RolesRequest request)
         {
             try
@@ -86,6 +92,7 @@ namespace api.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = Roles.AdminName)]
         public async Task<IActionResult> DeleteAsync(int id)
         {
             try

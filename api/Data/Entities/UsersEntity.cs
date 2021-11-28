@@ -3,7 +3,6 @@ using api.Data.Models;
 using api.Data.Services.PasswordHasher;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using System;
 
 namespace api.Data.Entities
 {
