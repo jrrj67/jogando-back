@@ -3,6 +3,7 @@
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS base
 ENV PATH $PATH:/root/.dotnet/tools
 RUN dotnet tool install --global dotnet-ef
+RUN dotnet dev-certs https -t
 WORKDIR /app
 EXPOSE 80
 EXPOSE 443
