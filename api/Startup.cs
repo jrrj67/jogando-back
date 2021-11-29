@@ -1,5 +1,6 @@
 using api.Data.Contexts;
 using api.Data.DependecyInjections;
+using api.Data.Seeds;
 using api.Data.Services.Token;
 using FluentValidation.AspNetCore;
 using MicroElements.Swashbuckle.FluentValidation.AspNetCore;
@@ -105,8 +106,6 @@ namespace api
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "api v1"));
             }
 
-            context.Database.Migrate();
-
             app.UseHttpsRedirection();
 
             app.UseRouting();
@@ -119,6 +118,10 @@ namespace api
             {
                 endpoints.MapControllers();
             });
+
+            context.Database.Migrate();
+
+            Seed.ApplySeed(app, Configuration);
         }
     }
 }

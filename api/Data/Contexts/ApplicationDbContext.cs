@@ -16,12 +16,9 @@ namespace api.Data.Contexts
         public DbSet<UsersEntity> Users { get; set; }
         public DbSet<RolesEntity> Roles { get; set; }
 
-        private readonly IPasswordHasher _passwordHasher;
-
         public ApplicationDbContext(DbContextOptions options, IConfiguration configuration, IPasswordHasher passwordHasher) : base(options)
         {
             Configuration = configuration;
-            _passwordHasher = passwordHasher;
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -35,7 +32,7 @@ namespace api.Data.Contexts
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            var usersEntity = new UsersEntity(Configuration, _passwordHasher);
+            var usersEntity = new UsersEntity();
             var rolesEntity = new RolesEntity();
 
 

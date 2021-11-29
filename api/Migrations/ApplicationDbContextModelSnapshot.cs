@@ -39,15 +39,6 @@ namespace api.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Roles");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedAt = new DateTime(2021, 11, 27, 18, 2, 54, 714, DateTimeKind.Utc).AddTicks(426),
-                            Name = "admin",
-                            UpdatedAt = new DateTime(2021, 11, 27, 18, 2, 54, 714, DateTimeKind.Utc).AddTicks(435)
-                        });
                 });
 
             modelBuilder.Entity("api.Data.Entities.UsersEntity", b =>
@@ -83,18 +74,6 @@ namespace api.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("Users");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedAt = new DateTime(2021, 11, 27, 18, 2, 54, 541, DateTimeKind.Utc).AddTicks(1680),
-                            Email = "ricardojunior.6767@gmail.com",
-                            Name = "Admin",
-                            Password = "$2a$11$cFy/SFwB56IpyclV.3y08e3vOcWas2FTSZRXdIbv4/vaM5z4d/2lS",
-                            RoleId = 1,
-                            UpdatedAt = new DateTime(2021, 11, 27, 18, 2, 54, 711, DateTimeKind.Utc).AddTicks(7742)
-                        });
                 });
 
             modelBuilder.Entity("api.Data.Entities.UsersEntity", b =>

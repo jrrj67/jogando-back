@@ -26,7 +26,7 @@ namespace api.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = Roles.AdminName)]
+        [Authorize(Roles = RolesConstants.Admin)]
         public IActionResult GetAll()
         {
             try
@@ -40,7 +40,7 @@ namespace api.Controllers
         }
 
         [HttpGet("{id}")]
-        [Authorize(Roles = Roles.AdminName)]
+        [Authorize(Roles = RolesConstants.Admin)]
         public IActionResult GetById(int id)
         {
             try
@@ -58,7 +58,7 @@ namespace api.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = Roles.AdminName)]
+        [Authorize(Roles = RolesConstants.Admin)]
         public async Task<IActionResult> SaveAsync(RolesRequest request)
         {
             try
@@ -73,7 +73,7 @@ namespace api.Controllers
         }
 
         [HttpPut("{id}")]
-        [Authorize(Roles = Roles.AdminName)]
+        [Authorize(Roles = RolesConstants.Admin)]
         public async Task<IActionResult> UpdateAsync(int id, RolesRequest request)
         {
             try
@@ -92,7 +92,7 @@ namespace api.Controllers
         }
 
         [HttpDelete("{id}")]
-        [Authorize(Roles = Roles.AdminName)]
+        [Authorize(Roles = RolesConstants.Admin)]
         public async Task<IActionResult> DeleteAsync(int id)
         {
             try
