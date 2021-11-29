@@ -8,7 +8,7 @@ namespace api.Data.Entities
     {
         public virtual ICollection<UsersEntity> Users { get; set; }
 
-        public static void OnModelCreating(ModelBuilder modelBuilder)
+        public void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<RolesEntity>().HasKey(t => t.Id);
 

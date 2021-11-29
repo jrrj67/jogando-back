@@ -7,7 +7,7 @@ namespace api.Data.Entities
     {
         public virtual RolesEntity Role { get; set; }
 
-        public static void OnModelCreating(ModelBuilder modelBuilder)
+        public void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<UsersEntity>().HasKey(t => t.Id);
 
