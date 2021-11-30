@@ -53,12 +53,12 @@ namespace api.Data.Services.Roles
         public async Task DeleteAsync(int id)
         {
             var users = _userRepository.GetAll();
-            
+
             if (users.Where(u => u.RoleId == id).Any())
             {
                 throw new Exception("Can't delete role because it has a user using it.");
             }
-            
+
             await _repository.DeleteAsync(id);
         }
     }
