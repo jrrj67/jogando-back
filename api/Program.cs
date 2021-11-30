@@ -44,7 +44,7 @@ namespace api
                 Log.Information("Adding services.");
 
                 builder.Services.AddDataProtection()
-                    .PersistKeysToFileSystem(new DirectoryInfo(@"..\temp-keys"));
+                    .PersistKeysToFileSystem(new DirectoryInfo(@"/app/Temp/Keys"));
 
                 builder.Services.AddControllers();
 

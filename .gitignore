@@ -364,3 +364,6 @@ FodyWeavers.xsd
 
 # App env
 appsettings.json
+
+# Tempo folder
+Temp/
