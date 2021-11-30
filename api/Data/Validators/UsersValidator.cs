@@ -1,7 +1,7 @@
-﻿using JogandoBack.API.Data.Requests;
+﻿using FluentValidation;
+using JogandoBack.API.Data.Requests;
 using JogandoBack.API.Data.Responses;
 using JogandoBack.API.Data.Services.Users;
-using FluentValidation;
 using Microsoft.AspNetCore.Http;
 
 namespace JogandoBack.API.Data.Validators

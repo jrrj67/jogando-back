@@ -1,5 +1,5 @@
-﻿using JogandoBack.API.Data.Requests;
-using FluentValidation;
+﻿using FluentValidation;
+using JogandoBack.API.Data.Requests;
 
 namespace JogandoBack.API.Data.Validators
 {

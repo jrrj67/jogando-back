@@ -1,9 +1,9 @@
-﻿using JogandoBack.API.Data.Repositories.Users;
+﻿using AutoMapper;
+using JogandoBack.API.Data.Repositories.Users;
 using JogandoBack.API.Data.Requests;
 using JogandoBack.API.Data.Responses;
 using JogandoBack.API.Data.Services.PasswordHasher;
 using JogandoBack.API.Data.Services.Token;
-using AutoMapper;
 
 namespace JogandoBack.API.Data.Services.Login
 {

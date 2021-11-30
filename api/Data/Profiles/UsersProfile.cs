@@ -1,7 +1,7 @@
-﻿using JogandoBack.API.Data.Entities;
+﻿using AutoMapper;
+using JogandoBack.API.Data.Entities;
 using JogandoBack.API.Data.Requests;
 using JogandoBack.API.Data.Responses;
-using AutoMapper;
 
 namespace JogandoBack.API.Data.Profiles
 {

@@ -1,11 +1,12 @@
+using FluentValidation.AspNetCore;
 using JogandoBack.API.Data.Contexts;
 using JogandoBack.API.Data.DependecyInjections;
 using JogandoBack.API.Data.Seeds;
 using JogandoBack.API.Data.Services.Token;
-using FluentValidation.AspNetCore;
 using MicroElements.Swashbuckle.FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,6 +16,7 @@ using Microsoft.OpenApi.Models;
 using Serilog;
 using Serilog.Events;
 using System;
+using System.IO;
 
 namespace api
 {
@@ -23,7 +25,7 @@ namespace api
         public static void Main(string[] args)
         {
             Log.Logger = new LoggerConfiguration()
-                .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
+                .MinimumLevel.Override("Microsoft", LogEventLevel.Error)
                 .Enrich.FromLogContext()
                 .WriteTo.Console()
                 .CreateBootstrapLogger();
@@ -40,6 +42,9 @@ namespace api
                     .Enrich.FromLogContext());
 
                 Log.Information("Adding services.");
+
+                builder.Services.AddDataProtection()
+                    .PersistKeysToFileSystem(new DirectoryInfo(@"..\temp-keys"));
 
                 builder.Services.AddControllers();
 

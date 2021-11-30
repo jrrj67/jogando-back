@@ -1,11 +1,11 @@
-﻿using JogandoBack.API.Data.Entities;
+﻿using FluentValidation;
+using JogandoBack.API.Data.Entities;
 using JogandoBack.API.Data.Repositories;
 using JogandoBack.API.Data.Requests;
 using JogandoBack.API.Data.Responses;
 using JogandoBack.API.Data.Services;
 using JogandoBack.API.Data.Services.Roles;
 using JogandoBack.API.Data.Validators;
-using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace JogandoBack.API.Data.DependecyInjections
