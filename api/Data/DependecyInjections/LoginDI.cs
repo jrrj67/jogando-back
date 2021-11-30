@@ -1,11 +1,11 @@
-﻿using api.Data.Requests;
-using api.Data.Responses;
-using api.Data.Services.Login;
-using api.Data.Validators;
+﻿using JogandoBack.API.Data.Requests;
+using JogandoBack.API.Data.Responses;
+using JogandoBack.API.Data.Services.Login;
+using JogandoBack.API.Data.Validators;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace api.Data.DependecyInjections
+namespace JogandoBack.API.Data.DependecyInjections
 {
     public abstract class LoginDI
     {

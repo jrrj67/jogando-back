@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace api.Data.Services
+namespace JogandoBack.API.Data.Services
 {
     public interface IBaseService<Response, Request>
     {

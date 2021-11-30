@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 using System;
 
-namespace api.Migrations
+namespace JogandoBack.API.Migrations
 {
     public partial class InitialMigration : Migration
     {

@@ -1,4 +1,4 @@
-﻿namespace api.Data.Services.Users
+﻿namespace JogandoBack.API.Data.Services.Users
 {
     public interface IUsersService<Response, Request> : IBaseService<Response, Request>
     {

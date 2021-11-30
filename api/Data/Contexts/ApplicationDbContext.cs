@@ -1,6 +1,6 @@
-﻿using api.Data.Entities;
-using api.Data.Models;
-using api.Data.Services.PasswordHasher;
+﻿using JogandoBack.API.Data.Entities;
+using JogandoBack.API.Data.Models;
+using JogandoBack.API.Data.Services.PasswordHasher;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace api.Data.Contexts
+namespace JogandoBack.API.Data.Contexts
 {
     public class ApplicationDbContext : DbContext
     {

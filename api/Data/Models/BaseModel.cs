@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace api.Data.Models
+namespace JogandoBack.API.Data.Models
 {
     public abstract class BaseModel
     {

@@ -1,4 +1,4 @@
-﻿namespace api.Data.Constants
+﻿namespace JogandoBack.API.Data.Constants
 {
     public class RolesConstants
     {

@@ -1,11 +1,11 @@
-﻿using api.Data.Constants;
-using api.Data.Contexts;
-using api.Data.Entities;
+﻿using JogandoBack.API.Data.Constants;
+using JogandoBack.API.Data.Contexts;
+using JogandoBack.API.Data.Entities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using System.Linq;
 
-namespace api.Data.Seeds
+namespace JogandoBack.API.Data.Seeds
 {
     public class Roles
     {

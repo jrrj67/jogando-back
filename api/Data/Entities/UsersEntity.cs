@@ -1,7 +1,7 @@
-﻿using api.Data.Models;
+﻿using JogandoBack.API.Data.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace api.Data.Entities
+namespace JogandoBack.API.Data.Entities
 {
     public class UsersEntity : User
     {

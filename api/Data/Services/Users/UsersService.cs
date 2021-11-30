@@ -1,13 +1,13 @@
-﻿using api.Data.Entities;
-using api.Data.Repositories.Users;
-using api.Data.Requests;
-using api.Data.Responses;
-using api.Data.Services.PasswordHasher;
+﻿using JogandoBack.API.Data.Entities;
+using JogandoBack.API.Data.Repositories.Users;
+using JogandoBack.API.Data.Requests;
+using JogandoBack.API.Data.Responses;
+using JogandoBack.API.Data.Services.PasswordHasher;
 using AutoMapper;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace api.Data.Services.Users
+namespace JogandoBack.API.Data.Services.Users
 {
     public class UsersService : IUsersService<UsersResponse, UsersRequest>
     {

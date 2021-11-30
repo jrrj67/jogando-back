@@ -1,12 +1,12 @@
-﻿using api.Data.Repositories.Users;
-using api.Data.Requests;
-using api.Data.Responses;
-using api.Data.Services.Users;
-using api.Data.Validators;
+﻿using JogandoBack.API.Data.Repositories.Users;
+using JogandoBack.API.Data.Requests;
+using JogandoBack.API.Data.Responses;
+using JogandoBack.API.Data.Services.Users;
+using JogandoBack.API.Data.Validators;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace api.Data.DependecyInjections
+namespace JogandoBack.API.Data.DependecyInjections
 {
     public abstract class UsersDI
     {

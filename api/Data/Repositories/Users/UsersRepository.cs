@@ -1,8 +1,8 @@
-﻿using api.Data.Contexts;
-using api.Data.Entities;
+﻿using JogandoBack.API.Data.Contexts;
+using JogandoBack.API.Data.Entities;
 using System.Linq;
 
-namespace api.Data.Repositories.Users
+namespace JogandoBack.API.Data.Repositories.Users
 {
     public class UsersRepository : BaseRepository<UsersEntity>, IUsersRepository
     {

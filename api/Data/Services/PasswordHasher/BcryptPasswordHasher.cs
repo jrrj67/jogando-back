@@ -1,4 +1,4 @@
-﻿namespace api.Data.Services.PasswordHasher
+﻿namespace JogandoBack.API.Data.Services.PasswordHasher
 {
     public class BcryptPasswordHasher : IPasswordHasher
     {

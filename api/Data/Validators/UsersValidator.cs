@@ -1,10 +1,10 @@
-﻿using api.Data.Requests;
-using api.Data.Responses;
-using api.Data.Services.Users;
+﻿using JogandoBack.API.Data.Requests;
+using JogandoBack.API.Data.Responses;
+using JogandoBack.API.Data.Services.Users;
 using FluentValidation;
 using Microsoft.AspNetCore.Http;
 
-namespace api.Data.Validators
+namespace JogandoBack.API.Data.Validators
 {
     public class UsersValidator : AbstractValidator<UsersRequest>
     {

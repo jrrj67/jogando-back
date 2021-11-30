@@ -1,4 +1,4 @@
-﻿using api.Data.Entities;
+﻿using JogandoBack.API.Data.Entities;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -7,7 +7,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace api.Data.Services.Token
+namespace JogandoBack.API.Data.Services.Token
 {
     public class TokenService : ITokenService
     {

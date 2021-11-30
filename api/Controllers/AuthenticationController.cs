@@ -1,12 +1,12 @@
-﻿using api.Data.Requests;
-using api.Data.Responses;
-using api.Data.Services.Login;
+﻿using JogandoBack.API.Data.Requests;
+using JogandoBack.API.Data.Responses;
+using JogandoBack.API.Data.Services.Login;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Serilog;
 using System;
 
-namespace api.Controllers
+namespace JogandoBack.API.Controllers
 {
     [ApiController]
     [Route("api/authentication")]

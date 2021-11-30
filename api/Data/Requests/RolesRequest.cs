@@ -1,4 +1,4 @@
-﻿namespace api.Data.Requests
+﻿namespace JogandoBack.API.Data.Requests
 {
     public class RolesRequest
     {

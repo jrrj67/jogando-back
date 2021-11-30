@@ -1,15 +1,15 @@
-﻿using api.Data.Entities;
-using api.Data.Repositories;
-using api.Data.Repositories.Users;
-using api.Data.Requests;
-using api.Data.Responses;
+﻿using JogandoBack.API.Data.Entities;
+using JogandoBack.API.Data.Repositories;
+using JogandoBack.API.Data.Repositories.Users;
+using JogandoBack.API.Data.Requests;
+using JogandoBack.API.Data.Responses;
 using AutoMapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace api.Data.Services.Roles
+namespace JogandoBack.API.Data.Services.Roles
 {
     public class RolesService : IBaseService<RolesResponse, RolesRequest>
     {

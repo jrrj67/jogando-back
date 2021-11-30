@@ -1,7 +1,7 @@
-﻿using api.Data.Entities;
+﻿using JogandoBack.API.Data.Entities;
 using Microsoft.Extensions.Configuration;
 
-namespace api.Data.Services.Token
+namespace JogandoBack.API.Data.Services.Token
 {
     public interface ITokenService
     {

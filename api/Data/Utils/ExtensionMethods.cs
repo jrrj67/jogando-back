@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System;
 
-namespace api.Data.Utils
+namespace JogandoBack.API.Data.Utils
 {
     public static class ExtensionMethods
     {

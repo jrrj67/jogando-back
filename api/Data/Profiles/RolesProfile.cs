@@ -1,9 +1,9 @@
-﻿using api.Data.Entities;
-using api.Data.Requests;
-using api.Data.Responses;
+﻿using JogandoBack.API.Data.Entities;
+using JogandoBack.API.Data.Requests;
+using JogandoBack.API.Data.Responses;
 using AutoMapper;
 
-namespace api.Data.Profiles
+namespace JogandoBack.API.Data.Profiles
 {
     public class RolesProfile : Profile
     {

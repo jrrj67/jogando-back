@@ -1,8 +1,8 @@
-using api.Controllers;
-using api.Data.Requests;
-using api.Data.Responses;
-using api.Data.Services;
-using api.Data.Utils;
+using JogandoBack.API.Controllers;
+using JogandoBack.API.Data.Requests;
+using JogandoBack.API.Data.Responses;
+using JogandoBack.API.Data.Services;
+using JogandoBack.API.Data.Utils;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Moq;

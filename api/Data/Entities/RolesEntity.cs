@@ -1,8 +1,8 @@
-﻿using api.Data.Models;
+﻿using JogandoBack.API.Data.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 
-namespace api.Data.Entities
+namespace JogandoBack.API.Data.Entities
 {
     public class RolesEntity : Role
     {

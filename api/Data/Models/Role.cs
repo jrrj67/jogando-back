@@ -1,4 +1,4 @@
-﻿namespace api.Data.Models
+﻿namespace JogandoBack.API.Data.Models
 {
     public class Role : BaseModel
     {

@@ -1,7 +1,7 @@
-﻿using api.Data.Services.PasswordHasher;
+﻿using JogandoBack.API.Data.Services.PasswordHasher;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace api.Data.DependecyInjections
+namespace JogandoBack.API.Data.DependecyInjections
 {
     public abstract class PasswordHasherDI
     {

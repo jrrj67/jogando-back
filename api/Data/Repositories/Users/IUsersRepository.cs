@@ -1,6 +1,6 @@
-﻿using api.Data.Entities;
+﻿using JogandoBack.API.Data.Entities;
 
-namespace api.Data.Repositories.Users
+namespace JogandoBack.API.Data.Repositories.Users
 {
     public interface IUsersRepository : IBaseRepository<UsersEntity>
     {

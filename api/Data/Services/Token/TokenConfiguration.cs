@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace api.Data.Services.Token
+namespace JogandoBack.API.Data.Services.Token
 {
     public class TokenConfiguration
     {

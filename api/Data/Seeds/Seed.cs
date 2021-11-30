@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 
-namespace api.Data.Seeds
+namespace JogandoBack.API.Data.Seeds
 {
     public class Seed
     {

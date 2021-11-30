@@ -1,9 +1,9 @@
-﻿using api.Data.Requests;
-using api.Data.Responses;
-using api.Data.Services.Login;
+﻿using JogandoBack.API.Data.Requests;
+using JogandoBack.API.Data.Responses;
+using JogandoBack.API.Data.Services.Login;
 using FluentValidation;
 
-namespace api.Data.Validators
+namespace JogandoBack.API.Data.Validators
 {
     public class LoginValidator : AbstractValidator<LoginRequest>
     {

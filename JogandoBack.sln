@@ -5,9 +5,9 @@ VisualStudioVersion = 17.0.31717.71
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{46EDCF23-5530-4656-9B5C-03A67AEAF577}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "api", "api\api.csproj", "{1AA32304-81C0-4922-9FBE-D62D137725EE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JogandoBack.API", "api\JogandoBack.API.csproj", "{1AA32304-81C0-4922-9FBE-D62D137725EE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "tests", "tests\tests.csproj", "{0DA2D372-16E7-4220-8B55-B0708F17A9B3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JogandoBack.Tests", "tests\JogandoBack.Tests.csproj", "{0DA2D372-16E7-4220-8B55-B0708F17A9B3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,8 +1,8 @@
-﻿using api.Data.Constants;
-using api.Data.Requests;
-using api.Data.Responses;
-using api.Data.Services;
-using api.Data.Utils;
+﻿using JogandoBack.API.Data.Constants;
+using JogandoBack.API.Data.Requests;
+using JogandoBack.API.Data.Responses;
+using JogandoBack.API.Data.Services;
+using JogandoBack.API.Data.Utils;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -10,7 +10,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Threading.Tasks;
 
-namespace api.Controllers
+namespace JogandoBack.API.Controllers
 {
     [ApiController]
     [Route("api/roles")]

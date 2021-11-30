@@ -1,7 +1,7 @@
-﻿using api.Data.Requests;
+﻿using JogandoBack.API.Data.Requests;
 using FluentValidation;
 
-namespace api.Data.Validators
+namespace JogandoBack.API.Data.Validators
 {
     public class RolesValidator : AbstractValidator<RolesRequest>
     {

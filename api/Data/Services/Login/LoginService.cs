@@ -1,11 +1,11 @@
-﻿using api.Data.Repositories.Users;
-using api.Data.Requests;
-using api.Data.Responses;
-using api.Data.Services.PasswordHasher;
-using api.Data.Services.Token;
+﻿using JogandoBack.API.Data.Repositories.Users;
+using JogandoBack.API.Data.Requests;
+using JogandoBack.API.Data.Responses;
+using JogandoBack.API.Data.Services.PasswordHasher;
+using JogandoBack.API.Data.Services.Token;
 using AutoMapper;
 
-namespace api.Data.Services.Login
+namespace JogandoBack.API.Data.Services.Login
 {
     public class LoginService : ILoginService<LoginResponse, LoginRequest>
     {

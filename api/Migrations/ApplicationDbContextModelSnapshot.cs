@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using api.Data.Contexts;
+using JogandoBack.API.Data.Contexts;
 
-namespace api.Migrations
+namespace JogandoBack.API.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
@@ -19,7 +19,7 @@ namespace api.Migrations
                 .HasAnnotation("ProductVersion", "5.0.11")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("api.Data.Entities.RolesEntity", b =>
+            modelBuilder.Entity("JogandoBack.API.Data.Entities.RolesEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -41,7 +41,7 @@ namespace api.Migrations
                     b.ToTable("Roles");
                 });
 
-            modelBuilder.Entity("api.Data.Entities.UsersEntity", b =>
+            modelBuilder.Entity("JogandoBack.API.Data.Entities.UsersEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -76,9 +76,9 @@ namespace api.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("api.Data.Entities.UsersEntity", b =>
+            modelBuilder.Entity("JogandoBack.API.Data.Entities.UsersEntity", b =>
                 {
-                    b.HasOne("api.Data.Entities.RolesEntity", "Role")
+                    b.HasOne("JogandoBack.API.Data.Entities.RolesEntity", "Role")
                         .WithMany("Users")
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -87,7 +87,7 @@ namespace api.Migrations
                     b.Navigation("Role");
                 });
 
-            modelBuilder.Entity("api.Data.Entities.RolesEntity", b =>
+            modelBuilder.Entity("JogandoBack.API.Data.Entities.RolesEntity", b =>
                 {
                     b.Navigation("Users");
                 });

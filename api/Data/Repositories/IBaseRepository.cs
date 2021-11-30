@@ -1,8 +1,8 @@
-﻿using api.Data.Models;
+﻿using JogandoBack.API.Data.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace api.Data.Repositories
+namespace JogandoBack.API.Data.Repositories
 {
     public interface IBaseRepository<T> where T : BaseModel
     {

@@ -1,7 +1,7 @@
-﻿using api.Data.Services.Token;
+﻿using JogandoBack.API.Data.Services.Token;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace api.Data.DependecyInjections
+namespace JogandoBack.API.Data.DependecyInjections
 {
     public abstract class TokenDI
     {

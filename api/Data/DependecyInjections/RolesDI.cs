@@ -1,14 +1,14 @@
-﻿using api.Data.Entities;
-using api.Data.Repositories;
-using api.Data.Requests;
-using api.Data.Responses;
-using api.Data.Services;
-using api.Data.Services.Roles;
-using api.Data.Validators;
+﻿using JogandoBack.API.Data.Entities;
+using JogandoBack.API.Data.Repositories;
+using JogandoBack.API.Data.Requests;
+using JogandoBack.API.Data.Responses;
+using JogandoBack.API.Data.Services;
+using JogandoBack.API.Data.Services.Roles;
+using JogandoBack.API.Data.Validators;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace api.Data.DependecyInjections
+namespace JogandoBack.API.Data.DependecyInjections
 {
     public abstract class RolesDI
     {

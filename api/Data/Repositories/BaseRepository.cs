@@ -1,12 +1,12 @@
-﻿using api.Data.Contexts;
-using api.Data.Models;
+﻿using JogandoBack.API.Data.Contexts;
+using JogandoBack.API.Data.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace api.Data.Repositories
+namespace JogandoBack.API.Data.Repositories
 {
     public class BaseRepository<T> : IBaseRepository<T> where T : BaseModel
     {
