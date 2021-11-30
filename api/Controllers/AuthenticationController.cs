@@ -3,6 +3,7 @@ using api.Data.Responses;
 using api.Data.Services.Login;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Serilog;
 using System;
 
 namespace api.Controllers
@@ -13,11 +14,13 @@ namespace api.Controllers
     {
         private readonly ILogger<AuthenticationController> _logger;
         private readonly ILoginService<LoginResponse, LoginRequest> _loginService;
-
-        public AuthenticationController(ILogger<AuthenticationController> logger, ILoginService<LoginResponse, LoginRequest> loginService)
+        private readonly IDiagnosticContext _diagnosticContext;
+        public AuthenticationController(ILogger<AuthenticationController> logger, ILoginService<LoginResponse, LoginRequest> loginService,
+            IDiagnosticContext diagnosticContext)
         {
             _logger = logger;
             _loginService = loginService;
+            _diagnosticContext = diagnosticContext;
         }
 
         [HttpPost("login")]
@@ -25,7 +28,9 @@ namespace api.Controllers
         {
             try
             {
+                _logger.LogInformation("Logging user.");
                 var response = _loginService.Login(loginRequest);
+                _diagnosticContext.Set("UserEmail", loginRequest.Email);
                 return Ok(response);
             }
             catch (Exception ex)
