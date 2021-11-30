@@ -70,5 +70,10 @@ namespace JogandoBack.API.Data.Repositories
             _context.Set<T>().Remove(item);
             await _context.SaveChangesAsync();
         }
+
+        public bool Exists(int id)
+        {
+            return _context.Set<T>().Where(t => t.Id == id).Any();
+        }
     }
 }

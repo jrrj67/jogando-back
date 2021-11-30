@@ -10,5 +10,6 @@ namespace JogandoBack.API.Data.Services
         Task<Response> SaveAsync(Request request);
         Task<Response> UpdateAsync(int id, Request request);
         Task DeleteAsync(int id);
+        bool Exists(int id);
     }
 }

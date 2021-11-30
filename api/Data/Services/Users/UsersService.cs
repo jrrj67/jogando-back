@@ -59,5 +59,10 @@ namespace JogandoBack.API.Data.Services.Users
         {
             return _repository.IsUniqueEmail(email, userId);
         }
+
+        public bool Exists(int id)
+        {
+            return _repository.Exists(id);
+        }
     }
 }

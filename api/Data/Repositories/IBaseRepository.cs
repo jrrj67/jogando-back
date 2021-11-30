@@ -11,5 +11,6 @@ namespace JogandoBack.API.Data.Repositories
         Task SaveAsync(T item);
         Task UpdateAsync(int id, T item);
         Task DeleteAsync(int id);
+        bool Exists(int id);
     }
 }
