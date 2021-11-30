@@ -23,9 +23,7 @@ namespace JogandoBack.API.Data.Contexts
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder
-                .UseLazyLoadingProxies()
-                .UseSqlServer(Configuration.GetConnectionString("Default"));
+            optionsBuilder.UseSqlServer(Configuration.GetConnectionString("Default"));
 
             base.OnConfiguring(optionsBuilder);
         }
