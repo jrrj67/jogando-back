@@ -1,6 +1,7 @@
 ﻿using JogandoBack.API.Data.Contexts;
 using JogandoBack.API.Data.Entities;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -15,6 +16,18 @@ namespace JogandoBack.API.Data.Repositories.Users
         public override List<UsersEntity> GetAll()
         {
             return _context.Set<UsersEntity>().Include(u => u.Role).ToList();
+        }
+
+        public override UsersEntity GetById(int id)
+        {
+            var item = _context.Set<UsersEntity>().Include(u => u.Role).FirstOrDefault(t => t.Id == id);
+
+            if (item == null)
+            {
+                throw new ArgumentException("Not found.");
+            }
+
+            return item;
         }
 
         public bool IsUniqueEmail(string email, int userId)
