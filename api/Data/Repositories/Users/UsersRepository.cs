@@ -37,7 +37,7 @@ namespace JogandoBack.API.Data.Repositories.Users
 
         public UsersEntity GetUserByEmail(string email)
         {
-            return _context.Set<UsersEntity>().Where(u => u.Email == email).FirstOrDefault();
+            return _context.Set<UsersEntity>().Include(u => u.Role).Where(u => u.Email == email).FirstOrDefault();
         }
     }
 }

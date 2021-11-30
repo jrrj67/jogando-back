@@ -15,6 +15,7 @@ namespace JogandoBack.API.Controllers
         private readonly ILogger<AuthenticationController> _logger;
         private readonly ILoginService<LoginResponse, LoginRequest> _loginService;
         private readonly IDiagnosticContext _diagnosticContext;
+
         public AuthenticationController(ILogger<AuthenticationController> logger, ILoginService<LoginResponse, LoginRequest> loginService,
             IDiagnosticContext diagnosticContext)
         {
@@ -29,8 +30,11 @@ namespace JogandoBack.API.Controllers
             try
             {
                 _logger.LogInformation("Logging user.");
-                var response = _loginService.Login(loginRequest);
+
                 _diagnosticContext.Set("UserEmail", loginRequest.Email);
+               
+                var response = _loginService.Login(loginRequest);
+                
                 return Ok(response);
             }
             catch (Exception ex)
