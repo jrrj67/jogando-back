@@ -20,7 +20,8 @@ namespace JogandoBack.API.Data.Validators
                 .NotNull();
 
             RuleFor(field => new { field.Email, field.Password })
-                .Must(fields => _loginService.VerifyEmailAndPassword(fields.Email, fields.Password)).WithMessage("Wrong credentials.")
+                .Must(fields => _loginService.VerifyEmailAndPassword(fields.Email, fields.Password))
+                    .WithMessage("Wrong credentials.")
                 .OverridePropertyName("EmailOrPassword");
         }
     }

@@ -35,6 +35,8 @@ namespace JogandoBack.API.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, ex.Message);
+
                 return BadRequest(ex.Message);
             }
         }
@@ -49,10 +51,14 @@ namespace JogandoBack.API.Controllers
             }
             catch (ArgumentException ex)
             {
+                _logger.LogError(ex, ex.Message);
+
                 return NotFound(ex.Message);
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, ex.Message);
+
                 return BadRequest(ex.Message);
             }
         }
@@ -68,6 +74,8 @@ namespace JogandoBack.API.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, ex.Message);
+
                 return BadRequest(ex.Message);
             }
         }
@@ -83,10 +91,14 @@ namespace JogandoBack.API.Controllers
             }
             catch (ArgumentException ex)
             {
+                _logger.LogError(ex, ex.Message); ;
+
                 return NotFound(ex.Message);
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, ex.Message);
+
                 return BadRequest(ex.Message);
             }
         }
@@ -98,14 +110,19 @@ namespace JogandoBack.API.Controllers
             try
             {
                 await _rolesService.DeleteAsync(id);
+
                 return Ok("Deleted.");
             }
             catch (ArgumentException ex)
             {
+                _logger.LogError(ex, ex.Message);
+
                 return NotFound(ex.Message);
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, ex.Message);
+
                 return BadRequest(ex.Message);
             }
         }

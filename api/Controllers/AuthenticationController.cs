@@ -34,11 +34,15 @@ namespace JogandoBack.API.Controllers
                 _diagnosticContext.Set("UserEmail", loginRequest.Email);
                
                 var response = _loginService.Login(loginRequest);
-                
+
+                _logger.LogInformation("User logged.");
+
                 return Ok(response);
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, ex.Message);
+
                 return Unauthorized(ex.Message);
             }
         }

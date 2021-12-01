@@ -31,6 +31,8 @@ namespace JogandoBack.API.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, ex.Message);
+
                 return BadRequest(ex.Message);
             }
         }
@@ -44,10 +46,14 @@ namespace JogandoBack.API.Controllers
             }
             catch (ArgumentException ex)
             {
+                _logger.LogError(ex, ex.Message);
+
                 return NotFound(ex.Message);
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, ex.Message);
+
                 return BadRequest(ex.Message);
             }
         }
@@ -58,10 +64,13 @@ namespace JogandoBack.API.Controllers
             try
             {
                 var response = await _usersService.SaveAsync(request);
+
                 return Created(HttpContext.Request.GetAbsoluteUri() + $"/{response.Id}", "Created.");
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, ex.Message);
+
                 return BadRequest(ex.Message);
             }
         }
@@ -72,14 +81,19 @@ namespace JogandoBack.API.Controllers
             try
             {
                 await _usersService.UpdateAsync(id, request);
+
                 return Ok("Updated.");
             }
             catch (ArgumentException ex)
             {
+                _logger.LogError(ex, ex.Message);
+
                 return NotFound(ex.Message);
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, ex.Message);
+
                 return BadRequest(ex.Message);
             }
         }
@@ -90,14 +104,19 @@ namespace JogandoBack.API.Controllers
             try
             {
                 await _usersService.DeleteAsync(id);
+
                 return Ok("Deleted.");
             }
             catch (ArgumentException ex)
             {
+                _logger.LogError(ex, ex.Message);
+
                 return NotFound(ex.Message);
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, ex.Message);
+
                 return BadRequest(ex.Message);
             }
         }
