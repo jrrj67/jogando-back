@@ -16,7 +16,7 @@ namespace JogandoBack.API.Data.Contexts
         public DbSet<UsersEntity> Users { get; set; }
         public DbSet<RolesEntity> Roles { get; set; }
 
-        public ApplicationDbContext(DbContextOptions options, IConfiguration configuration, IPasswordHasher passwordHasher) : base(options)
+        public ApplicationDbContext(DbContextOptions options, IConfiguration configuration) : base(options)
         {
             Configuration = configuration;
         }
