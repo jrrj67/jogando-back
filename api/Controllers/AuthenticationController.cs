@@ -32,7 +32,7 @@ namespace JogandoBack.API.Controllers
                 _logger.LogInformation("Logging user.");
 
                 _diagnosticContext.Set("UserEmail", loginRequest.Email);
-               
+
                 var response = _loginService.Login(loginRequest);
 
                 _logger.LogInformation("User logged.");

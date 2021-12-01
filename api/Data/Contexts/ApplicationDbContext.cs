@@ -1,6 +1,5 @@
 ﻿using JogandoBack.API.Data.Entities;
 using JogandoBack.API.Data.Models;
-using JogandoBack.API.Data.Services.PasswordHasher;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
