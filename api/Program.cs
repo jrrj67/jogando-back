@@ -18,7 +18,7 @@ using Serilog.Events;
 using System;
 using System.IO;
 
-namespace api
+namespace JogandoBack.API
 {
     public class Program
     {
@@ -72,7 +72,7 @@ namespace api
 
                 builder.Services.AddSwaggerGen(c =>
                 {
-                    c.SwaggerDoc("v1", new OpenApiInfo { Title = "api", Version = "v1" });
+                    c.SwaggerDoc("v1", new OpenApiInfo { Title = "JogandoBack API", Version = "v1" });
 
                     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
                     {
@@ -127,7 +127,7 @@ namespace api
                 {
                     app.UseDeveloperExceptionPage();
                     app.UseSwagger();
-                    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "api v1"));
+                    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "JogandoBack API v1"));
                 }
 
                 app.UseHttpsRedirection();
