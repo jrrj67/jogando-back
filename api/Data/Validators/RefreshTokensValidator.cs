@@ -5,15 +5,13 @@ using Microsoft.Extensions.Configuration;
 
 namespace JogandoBack.API.Data.Validators
 {
-    public class RefreshTokensValidator : AbstractValidator<RefreshTokensRequest>
+    public class RefreshTokensValidator : AbstractValidator<RefreshTokensBaseRequest>
     {
-        private readonly ITokenGeneratorService _tokenGeneratorService;
         private readonly IRefreshTokenService _refreshTokenService;
         public IConfiguration Configuration { get; set; }
 
-        public RefreshTokensValidator(ITokenGeneratorService tokenGeneratorService, IRefreshTokenService refreshTokenService)
+        public RefreshTokensValidator(IRefreshTokenService refreshTokenService)
         {
-            _tokenGeneratorService = tokenGeneratorService;
             _refreshTokenService = refreshTokenService;
 
             RuleFor(field => field.Token)

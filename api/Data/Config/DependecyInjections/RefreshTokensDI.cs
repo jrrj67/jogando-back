@@ -12,7 +12,7 @@ namespace JogandoBack.API.Data.Config.DependecyInjections
     {
         public static void RegisterDependencies(IServiceCollection services)
         {
-            services.AddTransient<IValidator<RefreshTokensRequest>, RefreshTokensValidator>();
+            services.AddTransient<IValidator<RefreshTokensBaseRequest>, RefreshTokensValidator>();
 
             services.AddTransient<IRefreshTokensRepository, RefreshTokensRepository>();
 

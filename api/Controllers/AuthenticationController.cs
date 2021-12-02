@@ -57,7 +57,7 @@ namespace JogandoBack.API.Controllers
         }
 
         [HttpPost("refresh")]
-        public async Task<IActionResult> Refresh(RefreshTokensRequest refreshTokenRequest)
+        public async Task<IActionResult> Refresh(RefreshTokensBaseRequest refreshTokenRequest)
         {
             var refreshToken = _refreshTokensEntityService.GetByToken(refreshTokenRequest.Token);
 
