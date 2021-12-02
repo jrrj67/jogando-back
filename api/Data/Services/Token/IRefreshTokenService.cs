@@ -6,5 +6,6 @@ namespace JogandoBack.API.Data.Services.Token
     {
         IConfiguration Configuration { get; }
         string GenerateToken();
+        bool IsValid(string token);
     }
 }
