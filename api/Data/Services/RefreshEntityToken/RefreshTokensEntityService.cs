@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace JogandoBack.API.Data.Services.RefreshTokensEntityService
 {
-    public class RefreshTokensEntityService : IRefreshTokensEntityService<RefreshTokenResponse, RefreshTokenRequest>
+    public class RefreshTokensEntityService : IRefreshTokensEntityService<RefreshTokensResponse, RefreshTokensRequest>
     {
         private readonly IRefreshTokensRepository _repository;
         private readonly IMapper _mapper;
@@ -29,30 +29,30 @@ namespace JogandoBack.API.Data.Services.RefreshTokensEntityService
             throw new System.NotImplementedException();
         }
 
-        public List<RefreshTokenResponse> GetAll()
+        public List<RefreshTokensResponse> GetAll()
         {
             throw new System.NotImplementedException();
         }
 
-        public RefreshTokenResponse GetById(int id)
+        public RefreshTokensResponse GetById(int id)
         {
             throw new System.NotImplementedException();
         }
 
-        public RefreshTokenResponse GetByToken(string token)
+        public RefreshTokensResponse GetByToken(string token)
         {
             var model = _repository.GetByToken(token);
-            return _mapper.Map<RefreshTokenResponse>(model);
+            return _mapper.Map<RefreshTokensResponse>(model);
         }
 
-        public async Task<RefreshTokenResponse> SaveAsync(RefreshTokenRequest request)
+        public async Task<RefreshTokensResponse> SaveAsync(RefreshTokensRequest request)
         {
-            var requestModel = _mapper.Map<RefreshTokenEntity>(request);
+            var requestModel = _mapper.Map<RefreshTokensEntity>(request);
             await _repository.SaveAsync(requestModel);
-            return _mapper.Map<RefreshTokenResponse>(requestModel);
+            return _mapper.Map<RefreshTokensResponse>(requestModel);
         }
 
-        public Task<RefreshTokenResponse> UpdateAsync(int id, RefreshTokenRequest request)
+        public Task<RefreshTokensResponse> UpdateAsync(int id, RefreshTokensRequest request)
         {
             throw new System.NotImplementedException();
         }

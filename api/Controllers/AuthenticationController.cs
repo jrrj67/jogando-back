@@ -16,11 +16,11 @@ namespace JogandoBack.API.Controllers
     {
         private readonly ILogger<AuthenticationController> _logger;
         private readonly ILoginService<LoginResponse, LoginRequest> _loginService;
-        private readonly IBaseService<RefreshTokenResponse, RefreshTokenRequest> _refreshTokenService;
+        private readonly IBaseService<RefreshTokensResponse, RefreshTokensRequest> _refreshTokenService;
         private readonly IDiagnosticContext _diagnosticContext;
 
         public AuthenticationController(ILogger<AuthenticationController> logger, ILoginService<LoginResponse, LoginRequest> loginService,
-            IDiagnosticContext diagnosticContext, IBaseService<RefreshTokenResponse, RefreshTokenRequest> refreshTokenService)
+            IDiagnosticContext diagnosticContext, IBaseService<RefreshTokensResponse, RefreshTokensRequest> refreshTokenService)
         {
             _logger = logger;
             _loginService = loginService;

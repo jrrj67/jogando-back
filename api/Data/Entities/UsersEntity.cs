@@ -7,7 +7,7 @@ namespace JogandoBack.API.Data.Entities
     {
         public RolesEntity Role { get; set; }
 
-        public RefreshTokenEntity RefreshToken { get; set; }
+        public RefreshTokensEntity RefreshToken { get; set; }
 
         public void OnModelCreating(ModelBuilder modelBuilder)
         {

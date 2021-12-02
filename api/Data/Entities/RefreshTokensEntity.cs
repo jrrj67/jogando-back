@@ -3,20 +3,20 @@ using Microsoft.EntityFrameworkCore;
 
 namespace JogandoBack.API.Data.Entities
 {
-    public class RefreshTokenEntity : RefreshToken
+    public class RefreshTokensEntity : RefreshToken
     {
         public UsersEntity User { get; set; }
 
         public void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<RefreshTokenEntity>().HasKey(rt => rt.Id);
+            modelBuilder.Entity<RefreshTokensEntity>().HasKey(rt => rt.Id);
 
-            modelBuilder.Entity<RefreshTokenEntity>().Property(rt => rt.Token).IsRequired();
+            modelBuilder.Entity<RefreshTokensEntity>().Property(rt => rt.Token).IsRequired();
 
-            modelBuilder.Entity<RefreshTokenEntity>()
+            modelBuilder.Entity<RefreshTokensEntity>()
                 .HasOne(rt => rt.User)
                 .WithOne(u => u.RefreshToken)
-                .HasForeignKey<RefreshTokenEntity>(rt => rt.UserId)
+                .HasForeignKey<RefreshTokensEntity>(rt => rt.UserId)
                 .OnDelete(DeleteBehavior.Restrict);
         }
     }

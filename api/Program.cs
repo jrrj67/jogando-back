@@ -115,7 +115,7 @@ namespace JogandoBack.API
 
                 RolesDI.RegisterDependencies(builder.Services);
 
-                RefreshTokenDI.RegisterDependencies(builder.Services);
+                RefreshTokensDI.RegisterDependencies(builder.Services);
 
                 Log.Information("Building application.");
 

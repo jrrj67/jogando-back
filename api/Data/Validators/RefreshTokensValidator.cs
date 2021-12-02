@@ -8,12 +8,12 @@ using System.IdentityModel.Tokens.Jwt;
 
 namespace JogandoBack.API.Data.Validators
 {
-    public class RefreshTokenValidator : AbstractValidator<RefreshTokenRequest>
+    public class RefreshTokensValidator : AbstractValidator<RefreshTokensRequest>
     {
         private readonly ITokenGeneratorService _tokenGeneratorService;
         public IConfiguration Configuration { get; set; }
 
-        public RefreshTokenValidator(ITokenGeneratorService tokenGeneratorService)
+        public RefreshTokensValidator(ITokenGeneratorService tokenGeneratorService)
         {
             _tokenGeneratorService = tokenGeneratorService;
 

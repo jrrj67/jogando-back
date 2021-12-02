@@ -2,8 +2,8 @@
 
 namespace JogandoBack.API.Data.Repositories.RefreshTokens
 {
-    public interface IRefreshTokensRepository : IBaseRepository<RefreshTokenEntity>
+    public interface IRefreshTokensRepository : IBaseRepository<RefreshTokensEntity>
     {
-        RefreshTokenEntity GetByToken(string token);
+        RefreshTokensEntity GetByToken(string token);
     }
 }

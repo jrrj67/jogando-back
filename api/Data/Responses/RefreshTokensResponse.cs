@@ -1,6 +1,6 @@
 ﻿namespace JogandoBack.API.Data.Responses
 {
-    public class RefreshTokenResponse
+    public class RefreshTokensResponse
     {
         public string Token { get; set; }
         public string RefreshToken { get; set; }
