@@ -4,6 +4,7 @@ using JogandoBack.API.Data.Models.Requests;
 using JogandoBack.API.Data.Models.Responses;
 using JogandoBack.API.Data.Repositories.RefreshTokens;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace JogandoBack.API.Data.Services.RefreshTokensEntityService
@@ -19,9 +20,9 @@ namespace JogandoBack.API.Data.Services.RefreshTokensEntityService
             _mapper = mapper;
         }
 
-        public Task DeleteAsync(int id)
+        public async Task DeleteAsync(int id)
         {
-            throw new System.NotImplementedException();
+            await _repository.DeleteAsync(id);
         }
 
         public bool Exists(int id)
@@ -42,6 +43,12 @@ namespace JogandoBack.API.Data.Services.RefreshTokensEntityService
         public RefreshTokensResponse GetByToken(string token)
         {
             var model = _repository.GetByToken(token);
+            return _mapper.Map<RefreshTokensResponse>(model);
+        }
+
+        public RefreshTokensResponse GetByUserId(int id)
+        {
+            var model = _repository.GetByUserId(id);
             return _mapper.Map<RefreshTokensResponse>(model);
         }
 

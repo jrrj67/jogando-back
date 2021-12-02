@@ -1,7 +1,9 @@
 ﻿using JogandoBack.API.Data.Models.Requests;
 using JogandoBack.API.Data.Models.Responses;
+using JogandoBack.API.Data.Repositories.Users;
 using JogandoBack.API.Data.Services.Login;
 using JogandoBack.API.Data.Services.RefreshTokensEntityService;
+using JogandoBack.API.Data.Services.Users;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Serilog;
@@ -18,14 +20,17 @@ namespace JogandoBack.API.Controllers
         private readonly ILoginService<LoginResponse, LoginRequest> _loginService;
         private readonly IRefreshTokensEntityService<RefreshTokensResponse, RefreshTokensRequest> _refreshTokensEntityService;
         private readonly IDiagnosticContext _diagnosticContext;
+        private readonly IUsersRepository _repository;
 
         public AuthenticationController(ILogger<AuthenticationController> logger, ILoginService<LoginResponse, LoginRequest> loginService,
-            IDiagnosticContext diagnosticContext, IRefreshTokensEntityService<RefreshTokensResponse, RefreshTokensRequest> refreshTokensEntityService)
+            IDiagnosticContext diagnosticContext, IRefreshTokensEntityService<RefreshTokensResponse, RefreshTokensRequest> refreshTokensEntityService, 
+            IUsersRepository repository)
         {
             _logger = logger;
             _loginService = loginService;
             _diagnosticContext = diagnosticContext;
             _refreshTokensEntityService = refreshTokensEntityService;
+            _repository = repository;
         }
 
         [HttpPost("login")]
@@ -51,10 +56,28 @@ namespace JogandoBack.API.Controllers
             }
         }
 
-        //[HttpPost("refresh")]
-        //public IActionResult Refresh(RefreshRequest refreshRequest)
-        //{
+        [HttpPost("refresh")]
+        public async Task<IActionResult> Refresh(RefreshTokensRequest refreshTokenRequest)
+        {
+            var refreshToken = _refreshTokensEntityService.GetByToken(refreshTokenRequest.Token);
 
-        //}
+            if (refreshToken == null)
+            {
+                return NotFound("Token not found");
+            }
+
+            await _refreshTokensEntityService.DeleteAsync(refreshToken.Id);
+
+            var user = _repository.GetById(refreshToken.UserId);
+
+            if (user == null)
+            {
+                return NotFound("User not found");
+            }
+
+            var response = await _loginService.Authenticate(user);
+
+            return Ok(response);
+        }
     }
 }

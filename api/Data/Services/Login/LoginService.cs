@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using JogandoBack.API.Data.Models.Entities;
 using JogandoBack.API.Data.Models.Requests;
 using JogandoBack.API.Data.Models.Responses;
 using JogandoBack.API.Data.Repositories.Users;
@@ -33,6 +34,11 @@ namespace JogandoBack.API.Data.Services.Login
         {
             var userEntity = _repository.GetUserByEmail(loginRequest.Email);
 
+            return await Authenticate(userEntity);
+        }
+
+        public async Task<LoginResponse> Authenticate(UsersEntity userEntity)
+        {
             var token = _tokenService.GenerateToken(userEntity);
 
             var refreshToken = _refreshTokenService.GenerateToken();
@@ -45,6 +51,13 @@ namespace JogandoBack.API.Data.Services.Login
                 Token = refreshToken,
                 UserId = userEntity.Id
             };
+
+            var refreshTokenResponse = _refreshTokenEntityService.GetByUserId(userEntity.Id);
+
+            if (refreshTokenResponse != null)
+            {
+                await _refreshTokenEntityService.DeleteAsync(refreshTokenResponse.Id);
+            }
 
             await _refreshTokenEntityService.SaveAsync(refreshTokenRequest);
 

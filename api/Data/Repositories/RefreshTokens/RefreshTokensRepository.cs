@@ -14,5 +14,10 @@ namespace JogandoBack.API.Data.Repositories.RefreshTokens
         {
             return _context.RefreshTokens.Where(rt => rt.Token == token).FirstOrDefault();
         }
+        
+        public RefreshTokensEntity GetByUserId(int id)
+        {
+            return _context.RefreshTokens.Where(rt => rt.UserId == id).FirstOrDefault();
+        }
     }
 }

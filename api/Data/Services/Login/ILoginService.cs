@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using JogandoBack.API.Data.Models.Entities;
+using System.Threading.Tasks;
 
 namespace JogandoBack.API.Data.Services.Login
 {
@@ -6,5 +7,6 @@ namespace JogandoBack.API.Data.Services.Login
     {
         Task<LoginResponse> Login(LoginRequest userRequest);
         bool VerifyEmailAndPassword(string email, string password);
+        Task<LoginResponse> Authenticate(UsersEntity userEntity);
     }
 }
