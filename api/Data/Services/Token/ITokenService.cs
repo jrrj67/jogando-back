@@ -6,7 +6,6 @@ namespace JogandoBack.API.Data.Services.Token
     public interface ITokenService
     {
         IConfiguration Configuration { get; }
-
         string GenerateToken(UsersEntity userEntity);
     }
 }

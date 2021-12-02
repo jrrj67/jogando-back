@@ -1,6 +1,10 @@
-﻿namespace JogandoBack.API.Data.Services.Token
+﻿using Microsoft.Extensions.Configuration;
+
+namespace JogandoBack.API.Data.Services.Token
 {
-    public interface IRefreshTokenService : ITokenService
+    public interface IRefreshTokenService
     {
+        IConfiguration Configuration { get; }
+        string GenerateToken();
     }
 }

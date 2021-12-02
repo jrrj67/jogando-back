@@ -1,5 +1,4 @@
-﻿using JogandoBack.API.Data.Entities;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 
 namespace JogandoBack.API.Data.Services.Token
@@ -15,7 +14,7 @@ namespace JogandoBack.API.Data.Services.Token
             _tokenGeneratorService = tokenGeneratorService;
         }
 
-        public string GenerateToken(UsersEntity userEntity)
+        public string GenerateToken()
         {
             var key = new SymmetricSecurityKey(_tokenGeneratorService.GetSecretKey(Configuration, "RefreshToken"));
 

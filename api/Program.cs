@@ -60,7 +60,8 @@ namespace JogandoBack.API
                         ValidIssuer = tokenConfiguration.Issuer,
                         ValidAudience = tokenConfiguration.Audience,
                         ValidateIssuer = true,
-                        ValidateAudience = true
+                        ValidateAudience = true,
+                        ClockSkew = TimeSpan.Zero
                     };
                 });
 
@@ -113,6 +114,8 @@ namespace JogandoBack.API
                 UsersDI.RegisterDependencies(builder.Services);
 
                 RolesDI.RegisterDependencies(builder.Services);
+
+                RefreshDI.RegisterDependencies(builder.Services);
 
                 Log.Information("Building application.");
 

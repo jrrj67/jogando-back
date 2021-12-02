@@ -46,5 +46,11 @@ namespace JogandoBack.API.Controllers
                 return Unauthorized(ex.Message);
             }
         }
+
+        //[HttpPost("refresh")]
+        //public IActionResult Refresh(RefreshRequest refreshRequest)
+        //{
+
+        //}
     }
 }
