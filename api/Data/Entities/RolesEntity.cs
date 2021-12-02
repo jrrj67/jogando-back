@@ -6,7 +6,7 @@ namespace JogandoBack.API.Data.Entities
 {
     public class RolesEntity : Role
     {
-        public virtual ICollection<UsersEntity> Users { get; set; }
+        public ICollection<UsersEntity> Users { get; set; }
 
         public void OnModelCreating(ModelBuilder modelBuilder)
         {

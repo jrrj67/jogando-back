@@ -1,8 +1,10 @@
-﻿namespace JogandoBack.API.Data.Services.Login
+﻿using System.Threading.Tasks;
+
+namespace JogandoBack.API.Data.Services.Login
 {
     public interface ILoginService<LoginResponse, LoginRequest>
     {
-        LoginResponse Login(LoginRequest userRequest);
+        Task<LoginResponse> Login(LoginRequest userRequest);
         bool VerifyEmailAndPassword(string email, string password);
     }
 }

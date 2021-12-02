@@ -5,8 +5,9 @@ namespace JogandoBack.API.Data.Entities
 {
     public class UsersEntity : User
     {
-        public virtual RolesEntity Role { get; set; }
-        public virtual RefreshTokenEntity RefreshToken { get; set; }
+        public RolesEntity Role { get; set; }
+
+        public RefreshTokenEntity RefreshToken { get; set; }
 
         public void OnModelCreating(ModelBuilder modelBuilder)
         {

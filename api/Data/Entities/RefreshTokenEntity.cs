@@ -5,7 +5,7 @@ namespace JogandoBack.API.Data.Entities
 {
     public class RefreshTokenEntity : RefreshToken
     {
-        public virtual UsersEntity User { get; set; }
+        public UsersEntity User { get; set; }
 
         public void OnModelCreating(ModelBuilder modelBuilder)
         {

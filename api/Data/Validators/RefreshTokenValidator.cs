@@ -17,7 +17,7 @@ namespace JogandoBack.API.Data.Validators
         {
             _tokenGeneratorService = tokenGeneratorService;
 
-            RuleFor(field => field.RefreshToken)
+            RuleFor(field => field.Token)
                 .Must(rt => IsValid(rt))
                     .WithMessage("Token invalid.")
                 .NotNull();

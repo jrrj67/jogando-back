@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Serilog;
 using System;
+using System.Threading.Tasks;
 
 namespace JogandoBack.API.Controllers
 {
@@ -28,7 +29,7 @@ namespace JogandoBack.API.Controllers
         }
 
         [HttpPost("login")]
-        public IActionResult Login(LoginRequest loginRequest)
+        public async Task<IActionResult> Login(LoginRequest loginRequest)
         {
             try
             {
@@ -36,7 +37,7 @@ namespace JogandoBack.API.Controllers
 
                 _diagnosticContext.Set("UserEmail", loginRequest.Email);
 
-                var response = _loginService.Login(loginRequest);
+                var response = await _loginService.Login(loginRequest);
 
                 _logger.LogInformation("User logged.");
 

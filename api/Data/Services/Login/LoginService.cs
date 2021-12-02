@@ -4,6 +4,7 @@ using JogandoBack.API.Data.Requests;
 using JogandoBack.API.Data.Responses;
 using JogandoBack.API.Data.Services.PasswordHasher;
 using JogandoBack.API.Data.Services.Token;
+using System.Threading.Tasks;
 
 namespace JogandoBack.API.Data.Services.Login
 {
@@ -27,7 +28,7 @@ namespace JogandoBack.API.Data.Services.Login
             _refreshTokenEntityService = refreshTokenEntityService;
         }
 
-        public LoginResponse Login(LoginRequest loginRequest)
+        public async Task<LoginResponse> Login(LoginRequest loginRequest)
         {
             var userEntity = _repository.GetUserByEmail(loginRequest.Email);
 
@@ -38,14 +39,13 @@ namespace JogandoBack.API.Data.Services.Login
             var userResponse = _mapper.Map<UsersResponse>(userEntity);
 
             // Refresh token
-
             var refreshTokenRequest = new RefreshTokenRequest()
             {
-                RefreshToken = refreshToken,
+                Token = refreshToken,
                 UserId = userEntity.Id
             };
 
-            _refreshTokenEntityService.SaveAsync(refreshTokenRequest);
+            await _refreshTokenEntityService.SaveAsync(refreshTokenRequest);
 
             return new LoginResponse
             {
