@@ -12,14 +12,17 @@ namespace JogandoBack.API.Data.Services.Login
         private readonly IUsersRepository _repository;
         private readonly IMapper _mapper;
         private readonly ITokenService _tokenService;
+        private readonly ITokenService _refreshtokenService;
         private readonly IPasswordHasher _passwordHasher;
 
-        public LoginService(IUsersRepository repository, IMapper mapper, ITokenService tokenService, IPasswordHasher passwordHasher)
+        public LoginService(IUsersRepository repository, IMapper mapper, ITokenService tokenService, ITokenService refreshtokenService,
+            IPasswordHasher passwordHasher)
         {
             _repository = repository;
             _mapper = mapper;
             _tokenService = tokenService;
             _passwordHasher = passwordHasher;
+            _refreshtokenService = refreshtokenService;
         }
 
         public LoginResponse Login(LoginRequest loginRequest)
@@ -28,12 +31,15 @@ namespace JogandoBack.API.Data.Services.Login
 
             var token = _tokenService.GenerateToken(userEntity);
 
+            var refreshToken = _refreshtokenService.GenerateToken(userEntity);
+
             var userResponse = _mapper.Map<UsersResponse>(userEntity);
 
             return new LoginResponse
             {
                 User = userResponse,
-                Token = token
+                Token = token,
+                RefreshToken = refreshToken
             };
         }
 

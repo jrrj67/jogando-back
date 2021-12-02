@@ -50,11 +50,13 @@ namespace JogandoBack.API
 
                 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt =>
                 {
-                    var tokenConfiguration = TokenService.GetTokenConfiguration(builder.Configuration);
+                    var tokenGenerator = new TokenGeneratorService();
+
+                    var tokenConfiguration = tokenGenerator.GetTokenConfiguration(builder.Configuration, "Token");
 
                     opt.TokenValidationParameters = new TokenValidationParameters()
                     {
-                        IssuerSigningKey = new SymmetricSecurityKey(TokenService.GetSecretKey(builder.Configuration)),
+                        IssuerSigningKey = new SymmetricSecurityKey(tokenGenerator.GetSecretKey(builder.Configuration, "Secret")),
                         ValidIssuer = tokenConfiguration.Issuer,
                         ValidAudience = tokenConfiguration.Audience,
                         ValidateIssuer = true,

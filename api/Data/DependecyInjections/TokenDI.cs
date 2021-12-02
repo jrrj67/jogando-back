@@ -8,6 +8,12 @@ namespace JogandoBack.API.Data.DependecyInjections
         public static void RegisterDependencies(IServiceCollection services)
         {
             services.AddTransient<ITokenService, TokenService>();
+
+            // Refresh token
+            services.AddTransient<IRefreshTokenService, RefreshTokenService>();
+
+            // Token generator
+            services.AddTransient<ITokenGeneratorService, TokenGeneratorService>();
         }
     }
 }
