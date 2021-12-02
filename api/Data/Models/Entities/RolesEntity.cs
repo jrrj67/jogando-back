@@ -1,5 +1,4 @@
-﻿using JogandoBack.API.Data.Models.Entities;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 
 namespace JogandoBack.API.Data.Models.Entities

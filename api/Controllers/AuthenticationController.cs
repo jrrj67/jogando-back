@@ -1,6 +1,5 @@
 ﻿using JogandoBack.API.Data.Models.Requests;
 using JogandoBack.API.Data.Models.Responses;
-using JogandoBack.API.Data.Services;
 using JogandoBack.API.Data.Services.Login;
 using JogandoBack.API.Data.Services.RefreshTokensEntityService;
 using Microsoft.AspNetCore.Mvc;

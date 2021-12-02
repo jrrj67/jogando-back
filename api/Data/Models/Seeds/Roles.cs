@@ -1,5 +1,5 @@
-﻿using JogandoBack.API.Data.Models.Constants;
-using JogandoBack.API.Data.Config.Contexts;
+﻿using JogandoBack.API.Data.Config.Contexts;
+using JogandoBack.API.Data.Models.Constants;
 using JogandoBack.API.Data.Models.Entities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;

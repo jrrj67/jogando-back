@@ -1,5 +1,4 @@
-﻿using JogandoBack.API.Data.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace JogandoBack.API.Data.Models.Entities
 {

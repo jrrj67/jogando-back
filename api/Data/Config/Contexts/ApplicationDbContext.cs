@@ -1,5 +1,5 @@
-﻿using JogandoBack.API.Data.Models.Entities;
-using JogandoBack.API.Data.Models;
+﻿using JogandoBack.API.Data.Models;
+using JogandoBack.API.Data.Models.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;

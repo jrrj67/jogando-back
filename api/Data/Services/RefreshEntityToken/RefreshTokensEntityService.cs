@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using JogandoBack.API.Data.Models.Entities;
-using JogandoBack.API.Data.Repositories.RefreshTokens;
 using JogandoBack.API.Data.Models.Requests;
 using JogandoBack.API.Data.Models.Responses;
+using JogandoBack.API.Data.Repositories.RefreshTokens;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

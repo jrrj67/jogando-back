@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
-using JogandoBack.API.Data.Repositories.RefreshTokens;
 using JogandoBack.API.Data.Models.Requests;
 using JogandoBack.API.Data.Models.Responses;
+using JogandoBack.API.Data.Repositories.RefreshTokens;
 using JogandoBack.API.Data.Services.RefreshTokensEntityService;
 using JogandoBack.API.Data.Validators;
 using Microsoft.Extensions.DependencyInjection;
