@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using JogandoBack.API.Data.Requests;
+using JogandoBack.API.Data.Models.Requests;
 using JogandoBack.API.Data.Services.Token;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;

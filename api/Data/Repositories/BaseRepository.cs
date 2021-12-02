@@ -1,4 +1,4 @@
-﻿using JogandoBack.API.Data.Contexts;
+﻿using JogandoBack.API.Data.Config.Contexts;
 using JogandoBack.API.Data.Models;
 using Microsoft.EntityFrameworkCore;
 using System;

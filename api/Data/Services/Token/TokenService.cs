@@ -1,4 +1,4 @@
-﻿using JogandoBack.API.Data.Entities;
+﻿using JogandoBack.API.Data.Models.Entities;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.Collections.Generic;

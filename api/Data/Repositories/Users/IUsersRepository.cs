@@ -1,4 +1,4 @@
-﻿using JogandoBack.API.Data.Entities;
+﻿using JogandoBack.API.Data.Models.Entities;
 
 namespace JogandoBack.API.Data.Repositories.Users
 {

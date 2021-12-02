@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using JogandoBack.API.Data.Repositories.Users;
-using JogandoBack.API.Data.Requests;
-using JogandoBack.API.Data.Responses;
+using JogandoBack.API.Data.Models.Requests;
+using JogandoBack.API.Data.Models.Responses;
 using JogandoBack.API.Data.Services.PasswordHasher;
 using JogandoBack.API.Data.Services.RefreshTokensEntityService;
 using JogandoBack.API.Data.Services.Token;

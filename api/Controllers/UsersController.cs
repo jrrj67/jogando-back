@@ -1,5 +1,5 @@
-﻿using JogandoBack.API.Data.Requests;
-using JogandoBack.API.Data.Responses;
+﻿using JogandoBack.API.Data.Models.Requests;
+using JogandoBack.API.Data.Models.Responses;
 using JogandoBack.API.Data.Services.Users;
 using JogandoBack.API.Data.Utils;
 using Microsoft.AspNetCore.Mvc;

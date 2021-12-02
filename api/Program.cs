@@ -1,7 +1,7 @@
 using FluentValidation.AspNetCore;
-using JogandoBack.API.Data.Contexts;
-using JogandoBack.API.Data.DependecyInjections;
-using JogandoBack.API.Data.Seeds;
+using JogandoBack.API.Data.Config.Contexts;
+using JogandoBack.API.Data.Config.DependecyInjections;
+using JogandoBack.API.Data.Models.Seeds;
 using JogandoBack.API.Data.Services.Token;
 using MicroElements.Swashbuckle.FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;

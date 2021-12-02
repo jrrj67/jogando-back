@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using JogandoBack.API.Data.Entities;
+using JogandoBack.API.Data.Models.Entities;
 using JogandoBack.API.Data.Repositories;
 using JogandoBack.API.Data.Repositories.Users;
-using JogandoBack.API.Data.Requests;
-using JogandoBack.API.Data.Responses;
+using JogandoBack.API.Data.Models.Requests;
+using JogandoBack.API.Data.Models.Responses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
