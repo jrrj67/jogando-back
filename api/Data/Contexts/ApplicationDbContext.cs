@@ -14,6 +14,7 @@ namespace JogandoBack.API.Data.Contexts
         public IConfiguration Configuration { get; }
         public DbSet<UsersEntity> Users { get; set; }
         public DbSet<RolesEntity> Roles { get; set; }
+        public DbSet<RefreshTokenEntity> RefreshTokens { get; set; }
 
         public ApplicationDbContext(DbContextOptions options, IConfiguration configuration) : base(options)
         {
@@ -31,10 +32,12 @@ namespace JogandoBack.API.Data.Contexts
         {
             var usersEntity = new UsersEntity();
             var rolesEntity = new RolesEntity();
+            var refreshTokenEntity = new RefreshTokenEntity();
 
 
             usersEntity.OnModelCreating(modelBuilder);
             rolesEntity.OnModelCreating(modelBuilder);
+            refreshTokenEntity.OnModelCreating(modelBuilder);
 
             base.OnModelCreating(modelBuilder);
         }

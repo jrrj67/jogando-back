@@ -1,5 +1,6 @@
 ﻿using JogandoBack.API.Data.Requests;
 using JogandoBack.API.Data.Responses;
+using JogandoBack.API.Data.Services;
 using JogandoBack.API.Data.Services.Login;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -14,14 +15,16 @@ namespace JogandoBack.API.Controllers
     {
         private readonly ILogger<AuthenticationController> _logger;
         private readonly ILoginService<LoginResponse, LoginRequest> _loginService;
+        private readonly IBaseService<RefreshTokenResponse, RefreshTokenRequest> _refreshTokenService;
         private readonly IDiagnosticContext _diagnosticContext;
 
         public AuthenticationController(ILogger<AuthenticationController> logger, ILoginService<LoginResponse, LoginRequest> loginService,
-            IDiagnosticContext diagnosticContext)
+            IDiagnosticContext diagnosticContext, IBaseService<RefreshTokenResponse, RefreshTokenRequest> refreshTokenService)
         {
             _logger = logger;
             _loginService = loginService;
             _diagnosticContext = diagnosticContext;
+            _refreshTokenService = refreshTokenService;
         }
 
         [HttpPost("login")]
@@ -50,7 +53,7 @@ namespace JogandoBack.API.Controllers
         //[HttpPost("refresh")]
         //public IActionResult Refresh(RefreshRequest refreshRequest)
         //{
-
+            
         //}
     }
 }
