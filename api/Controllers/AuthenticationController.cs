@@ -2,6 +2,7 @@
 using JogandoBack.API.Data.Responses;
 using JogandoBack.API.Data.Services;
 using JogandoBack.API.Data.Services.Login;
+using JogandoBack.API.Data.Services.RefreshTokensEntityService;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Serilog;
@@ -16,16 +17,16 @@ namespace JogandoBack.API.Controllers
     {
         private readonly ILogger<AuthenticationController> _logger;
         private readonly ILoginService<LoginResponse, LoginRequest> _loginService;
-        private readonly IBaseService<RefreshTokensResponse, RefreshTokensRequest> _refreshTokenService;
+        private readonly IRefreshTokensEntityService<RefreshTokensResponse, RefreshTokensRequest> _refreshTokensEntityService;
         private readonly IDiagnosticContext _diagnosticContext;
 
         public AuthenticationController(ILogger<AuthenticationController> logger, ILoginService<LoginResponse, LoginRequest> loginService,
-            IDiagnosticContext diagnosticContext, IBaseService<RefreshTokensResponse, RefreshTokensRequest> refreshTokenService)
+            IDiagnosticContext diagnosticContext, IRefreshTokensEntityService<RefreshTokensResponse, RefreshTokensRequest> refreshTokensEntityService)
         {
             _logger = logger;
             _loginService = loginService;
             _diagnosticContext = diagnosticContext;
-            _refreshTokenService = refreshTokenService;
+            _refreshTokensEntityService = refreshTokensEntityService;
         }
 
         [HttpPost("login")]
