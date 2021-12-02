@@ -31,7 +31,7 @@ namespace JogandoBack.API.Data.Services.Token
                 Issuer = configuration.GetValue<string>($"{key}:Issuer"),
                 Audience = configuration.GetValue<string>($"{key}:Audience"),
                 NotBefore = DateTime.UtcNow,
-                Expiration = DateTime.UtcNow.AddHours(Convert.ToInt32(configuration.GetValue<string>($"{key}:Expiration")))
+                Expiration = DateTime.UtcNow.AddHours(Convert.ToInt32(configuration.GetValue<string>($"{key}:ExpirationInHours")))
             };
         }
     }
