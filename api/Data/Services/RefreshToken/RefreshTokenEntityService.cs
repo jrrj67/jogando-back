@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace JogandoBack.API.Data.Services.RefreshToken
 {
-    public class RefreshTokenService : IBaseService<RefreshTokenResponse, RefreshTokenRequest>
+    public class RefreshTokenEntityService : IBaseService<RefreshTokenResponse, RefreshTokenRequest>
     {
         private readonly IBaseRepository<RefreshTokenEntity> _repository;
         private readonly IMapper _mapper;
 
-        public RefreshTokenService(IBaseRepository<RefreshTokenEntity> repository, IMapper mapper)
+        public RefreshTokenEntityService(IBaseRepository<RefreshTokenEntity> repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;

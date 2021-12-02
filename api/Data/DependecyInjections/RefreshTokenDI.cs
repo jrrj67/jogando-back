@@ -1,4 +1,6 @@
 ﻿using FluentValidation;
+using JogandoBack.API.Data.Entities;
+using JogandoBack.API.Data.Repositories;
 using JogandoBack.API.Data.Requests;
 using JogandoBack.API.Data.Responses;
 using JogandoBack.API.Data.Services;
@@ -14,7 +16,9 @@ namespace JogandoBack.API.Data.DependecyInjections
         {
             services.AddTransient<IValidator<RefreshTokenRequest>, RefreshTokenValidator>();
 
-            services.AddTransient<IBaseService<RefreshTokenResponse, RefreshTokenRequest>, RefreshTokenService>();
+            services.AddTransient<IBaseRepository<RefreshTokenEntity>, BaseRepository<RefreshTokenEntity>>();
+
+            services.AddTransient<IBaseService<RefreshTokenResponse, RefreshTokenRequest>, RefreshTokenEntityService>();
         }
     }
 }
