@@ -4,10 +4,12 @@ using JogandoBack.API.Data.Repositories.Users;
 using JogandoBack.API.Data.Services.Login;
 using JogandoBack.API.Data.Services.RefreshTokensEntityService;
 using JogandoBack.API.Data.Services.Users;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Serilog;
 using System;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace JogandoBack.API.Controllers
@@ -44,7 +46,7 @@ namespace JogandoBack.API.Controllers
 
                 var response = await _loginService.Login(loginRequest);
 
-                _logger.LogInformation("User logged.");
+                _logger.LogInformation("User logged in.");
 
                 return Ok(response);
             }
@@ -63,7 +65,7 @@ namespace JogandoBack.API.Controllers
 
             if (refreshToken == null)
             {
-                return NotFound("Token not found");
+                return NotFound("Token not found.");
             }
 
             await _refreshTokensEntityService.DeleteAsync(refreshToken.Id);
@@ -72,12 +74,38 @@ namespace JogandoBack.API.Controllers
 
             if (user == null)
             {
-                return NotFound("User not found");
+                return NotFound("User not found.");
             }
 
             var response = await _loginService.Authenticate(user);
 
             return Ok(response);
+        }
+        
+        [HttpDelete("logout")]
+        [Authorize]
+        public async Task<IActionResult> Logout()
+        {
+            try
+            {
+                var userId = Convert.ToInt32(HttpContext.User.FindFirstValue("id"));
+ 
+                var token = _refreshTokensEntityService.GetByUserId(userId);
+                
+                if (token == null)
+                {
+                    return NotFound("Token not found.");
+                }
+
+                await _refreshTokensEntityService.DeleteAsync(token.Id);
+                
+                return Ok("User logged out.");
+            }
+            catch (Exception)
+            {
+
+                return Unauthorized();
+            }
         }
     }
 }
