@@ -3,6 +3,7 @@ using JogandoBack.API.Data.Repositories.Users;
 using JogandoBack.API.Data.Requests;
 using JogandoBack.API.Data.Responses;
 using JogandoBack.API.Data.Services.PasswordHasher;
+using JogandoBack.API.Data.Services.RefreshTokensEntityService;
 using JogandoBack.API.Data.Services.Token;
 using System.Threading.Tasks;
 
@@ -14,11 +15,11 @@ namespace JogandoBack.API.Data.Services.Login
         private readonly IMapper _mapper;
         private readonly ITokenService _tokenService;
         private readonly IRefreshTokenService _refreshTokenService;
-        private readonly IBaseService<RefreshTokenResponse, RefreshTokenRequest> _refreshTokenEntityService;
+        private readonly IRefreshTokensEntityService<RefreshTokenResponse, RefreshTokenRequest> _refreshTokenEntityService;
         private readonly IPasswordHasher _passwordHasher;
 
         public LoginService(IUsersRepository repository, IMapper mapper, ITokenService tokenService, IRefreshTokenService refreshTokenService,
-            IPasswordHasher passwordHasher, IBaseService<RefreshTokenResponse, RefreshTokenRequest> refreshTokenEntityService)
+            IPasswordHasher passwordHasher, IRefreshTokensEntityService<RefreshTokenResponse, RefreshTokenRequest> refreshTokenEntityService)
         {
             _repository = repository;
             _mapper = mapper;

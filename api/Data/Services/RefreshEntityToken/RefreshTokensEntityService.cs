@@ -1,19 +1,19 @@
 ﻿using AutoMapper;
 using JogandoBack.API.Data.Entities;
-using JogandoBack.API.Data.Repositories;
+using JogandoBack.API.Data.Repositories.RefreshTokens;
 using JogandoBack.API.Data.Requests;
 using JogandoBack.API.Data.Responses;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace JogandoBack.API.Data.Services.RefreshToken
+namespace JogandoBack.API.Data.Services.RefreshTokensEntityService
 {
-    public class RefreshTokenEntityService : IBaseService<RefreshTokenResponse, RefreshTokenRequest>
+    public class RefreshTokensEntityService : IRefreshTokensEntityService<RefreshTokenResponse, RefreshTokenRequest>
     {
-        private readonly IBaseRepository<RefreshTokenEntity> _repository;
+        private readonly IRefreshTokensRepository _repository;
         private readonly IMapper _mapper;
 
-        public RefreshTokenEntityService(IBaseRepository<RefreshTokenEntity> repository, IMapper mapper)
+        public RefreshTokensEntityService(IRefreshTokensRepository repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;
@@ -37,6 +37,12 @@ namespace JogandoBack.API.Data.Services.RefreshToken
         public RefreshTokenResponse GetById(int id)
         {
             throw new System.NotImplementedException();
+        }
+
+        public RefreshTokenResponse GetByToken(string token)
+        {
+            var model = _repository.GetByToken(token);
+            return _mapper.Map<RefreshTokenResponse>(model);
         }
 
         public async Task<RefreshTokenResponse> SaveAsync(RefreshTokenRequest request)
