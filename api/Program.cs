@@ -56,7 +56,7 @@ namespace JogandoBack.API
 
                     opt.TokenValidationParameters = new TokenValidationParameters()
                     {
-                        IssuerSigningKey = new SymmetricSecurityKey(tokenGenerator.GetSecretKey(builder.Configuration, "Secret")),
+                        IssuerSigningKey = new SymmetricSecurityKey(tokenGenerator.GetSecretKey(builder.Configuration, "Token")),
                         ValidIssuer = tokenConfiguration.Issuer,
                         ValidAudience = tokenConfiguration.Audience,
                         ValidateIssuer = true,

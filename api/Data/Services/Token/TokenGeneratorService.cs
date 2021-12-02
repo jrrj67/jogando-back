@@ -21,17 +21,17 @@ namespace JogandoBack.API.Data.Services.Token
 
         public byte[] GetSecretKey(IConfiguration configuration, string key)
         {
-            return Encoding.UTF8.GetBytes(configuration.GetValue<string>(key));
+            return Encoding.UTF8.GetBytes(configuration.GetValue<string>($"Authentication:{key}Secret"));
         }
 
         public TokenConfiguration GetTokenConfiguration(IConfiguration configuration, string key)
         {
             return new TokenConfiguration()
             {
-                Issuer = configuration.GetValue<string>($"{key}:Issuer"),
-                Audience = configuration.GetValue<string>($"{key}:Audience"),
+                Issuer = configuration.GetValue<string>("Authentication:Issuer"),
+                Audience = configuration.GetValue<string>("Authentication:Audience"),
                 NotBefore = DateTime.UtcNow,
-                Expiration = DateTime.UtcNow.AddHours(Convert.ToInt32(configuration.GetValue<string>($"{key}:ExpirationInHours")))
+                Expiration = DateTime.UtcNow.AddHours(Convert.ToInt32(configuration.GetValue<string>($"Authentication:{key}ExpirationInHours")))
             };
         }
     }

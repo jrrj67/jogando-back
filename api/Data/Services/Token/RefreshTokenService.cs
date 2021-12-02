@@ -17,7 +17,7 @@ namespace JogandoBack.API.Data.Services.Token
 
         public string GenerateToken(UsersEntity userEntity)
         {
-            var key = new SymmetricSecurityKey(_tokenGeneratorService.GetSecretKey(Configuration, "RefreshSecret"));
+            var key = new SymmetricSecurityKey(_tokenGeneratorService.GetSecretKey(Configuration, "RefreshToken"));
 
             var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 

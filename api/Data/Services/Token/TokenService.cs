@@ -26,7 +26,7 @@ namespace JogandoBack.API.Data.Services.Token
                 new Claim(ClaimTypes.Role, userEntity.Role.Name)
             };
 
-            var key = new SymmetricSecurityKey(_tokenGeneratorService.GetSecretKey(Configuration, "Secret"));
+            var key = new SymmetricSecurityKey(_tokenGeneratorService.GetSecretKey(Configuration, "Token"));
 
             var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
