@@ -21,6 +21,7 @@ namespace JogandoBack.API.Data.Services.Token
         {
             var claims = new List<Claim>()
             {
+                new Claim(type: "id", userEntity.Id.ToString()),
                 new Claim(ClaimTypes.Name, userEntity.Name),
                 new Claim(ClaimTypes.Email, userEntity.Email),
                 new Claim(ClaimTypes.Role, userEntity.Role.Name)
