@@ -1,6 +1,8 @@
-﻿using JogandoBack.API.Data.Models.Filters;
+﻿using AutoMapper;
+using JogandoBack.API.Data.Models.Filters;
 using JogandoBack.API.Data.Models.Requests;
 using JogandoBack.API.Data.Models.Responses;
+using JogandoBack.API.Data.Repositories.Users;
 using JogandoBack.API.Data.Services.Users;
 using JogandoBack.API.Data.Utils;
 using Microsoft.AspNetCore.Mvc;
@@ -15,13 +17,18 @@ namespace JogandoBack.API.Controllers
     [Route("api/users")]
     public class UsersController : ControllerBase
     {
+        private readonly IMapper _mapper;
         private readonly ILogger<UsersController> _logger;
+        private readonly IUsersRepository _usersRepository;
         private readonly IUsersService<UsersResponse, UsersRequest> _usersService;
 
-        public UsersController(ILogger<UsersController> logger, IUsersService<UsersResponse, UsersRequest> usersService)
+        public UsersController(ILogger<UsersController> logger, IUsersService<UsersResponse, UsersRequest> usersService, IMapper mapper,
+            IUsersRepository usersRepository)
         {
+            _mapper = mapper;
             _logger = logger;
             _usersService = usersService;
+            _usersRepository = usersRepository;
         }
 
         [HttpGet]
@@ -30,8 +37,10 @@ namespace JogandoBack.API.Controllers
             try
             {
                 var validFilter = new PaginationFilter(filter.PageNumber, filter.PageSize);
-                
-                var response = _usersService.GetAll(validFilter);
+
+                var usersEntity = _usersRepository.GetAll(validFilter);
+
+                var response = _mapper.Map<List<UsersResponse>>(usersEntity);
 
                 var totalRecords = response.Count;
 

@@ -3,7 +3,6 @@ using JogandoBack.API.Data.Models.Responses;
 using JogandoBack.API.Data.Repositories.Users;
 using JogandoBack.API.Data.Services.Login;
 using JogandoBack.API.Data.Services.RefreshTokensEntityService;
-using JogandoBack.API.Data.Services.Users;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -25,7 +24,7 @@ namespace JogandoBack.API.Controllers
         private readonly IUsersRepository _repository;
 
         public AuthenticationController(ILogger<AuthenticationController> logger, ILoginService<LoginResponse, LoginRequest> loginService,
-            IDiagnosticContext diagnosticContext, IRefreshTokensEntityService<RefreshTokensResponse, RefreshTokensRequest> refreshTokensEntityService, 
+            IDiagnosticContext diagnosticContext, IRefreshTokensEntityService<RefreshTokensResponse, RefreshTokensRequest> refreshTokensEntityService,
             IUsersRepository repository)
         {
             _logger = logger;
@@ -81,7 +80,7 @@ namespace JogandoBack.API.Controllers
 
             return Ok(response);
         }
-        
+
         [HttpDelete("logout")]
         [Authorize]
         public async Task<IActionResult> Logout()
@@ -89,16 +88,16 @@ namespace JogandoBack.API.Controllers
             try
             {
                 var userId = Convert.ToInt32(HttpContext.User.FindFirstValue("id"));
- 
+
                 var token = _refreshTokensEntityService.GetByUserId(userId);
-                
+
                 if (token == null)
                 {
                     return NotFound("Token not found.");
                 }
 
                 await _refreshTokensEntityService.DeleteAsync(token.Id);
-                
+
                 return Ok("User logged out.");
             }
             catch (Exception)

@@ -4,7 +4,6 @@ using JogandoBack.API.Data.Models.Requests;
 using JogandoBack.API.Data.Models.Responses;
 using JogandoBack.API.Data.Repositories.RefreshTokens;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace JogandoBack.API.Data.Services.RefreshTokensEntityService

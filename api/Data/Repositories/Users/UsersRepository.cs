@@ -25,7 +25,9 @@ namespace JogandoBack.API.Data.Repositories.Users
 
         public override UsersEntity GetById(int id)
         {
-            var item = _context.Set<UsersEntity>().Include(u => u.Role).FirstOrDefault(t => t.Id == id);
+            var item = _context.Set<UsersEntity>()
+                .Include(u => u.Role)
+                .FirstOrDefault(t => t.Id == id);
 
             if (item == null)
             {
@@ -37,12 +39,17 @@ namespace JogandoBack.API.Data.Repositories.Users
 
         public bool IsUniqueEmail(string email, int userId)
         {
-            return !_context.Set<UsersEntity>().Where(u => u.Email == email && u.Id != userId).Any();
+            return !_context.Set<UsersEntity>()
+                .Where(u => u.Email == email && u.Id != userId)
+                .Any();
         }
 
         public UsersEntity GetUserByEmail(string email)
         {
-            return _context.Set<UsersEntity>().Include(u => u.Role).Where(u => u.Email == email).FirstOrDefault();
+            return _context.Set<UsersEntity>()
+                .Include(u => u.Role)
+                .Where(u => u.Email == email)
+                .FirstOrDefault();
         }
     }
 }
