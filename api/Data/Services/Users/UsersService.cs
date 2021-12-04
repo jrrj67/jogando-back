@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using JogandoBack.API.Data.Models.Entities;
+using JogandoBack.API.Data.Models.Filters;
 using JogandoBack.API.Data.Models.Requests;
 using JogandoBack.API.Data.Models.Responses;
 using JogandoBack.API.Data.Repositories.Users;
@@ -25,6 +26,12 @@ namespace JogandoBack.API.Data.Services.Users
         public List<UsersResponse> GetAll()
         {
             var response = _repository.GetAll();
+            return _mapper.Map<List<UsersResponse>>(response);
+        }
+
+        public List<UsersResponse> GetAll(PaginationFilter filter)
+        {
+            var response = _repository.GetAll(filter);
             return _mapper.Map<List<UsersResponse>>(response);
         }
 

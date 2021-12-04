@@ -1,10 +1,12 @@
-﻿using JogandoBack.API.Data.Models.Requests;
+﻿using JogandoBack.API.Data.Models.Filters;
+using JogandoBack.API.Data.Models.Requests;
 using JogandoBack.API.Data.Models.Responses;
 using JogandoBack.API.Data.Services.Users;
 using JogandoBack.API.Data.Utils;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace JogandoBack.API.Controllers
@@ -23,11 +25,17 @@ namespace JogandoBack.API.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAll()
+        public IActionResult GetAll([FromQuery] PaginationFilter filter)
         {
             try
             {
-                return Ok(_usersService.GetAll());
+                var validFilter = new PaginationFilter(filter.PageNumber, filter.PageSize);
+                
+                var response = _usersService.GetAll(validFilter);
+
+                var totalRecords = response.Count;
+
+                return Ok(new PagedResponse<List<UsersResponse>>(response, filter.PageNumber, filter.PageSize));
             }
             catch (Exception ex)
             {
