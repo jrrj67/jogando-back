@@ -16,6 +16,10 @@ namespace JogandoBack.API.Data.Config.Contexts
         public DbSet<RolesEntity> Roles { get; set; }
         public DbSet<RefreshTokensEntity> RefreshTokens { get; set; }
 
+        public ApplicationDbContext()
+        {
+        }
+
         public ApplicationDbContext(DbContextOptions options, IConfiguration configuration) : base(options)
         {
             Configuration = configuration;
