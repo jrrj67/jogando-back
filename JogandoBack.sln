@@ -7,8 +7,6 @@ Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-co
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JogandoBack.API", "api\JogandoBack.API.csproj", "{1AA32304-81C0-4922-9FBE-D62D137725EE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JogandoBack.Tests", "tests\JogandoBack.Tests.csproj", "{0DA2D372-16E7-4220-8B55-B0708F17A9B3}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +21,6 @@ Global
 		{1AA32304-81C0-4922-9FBE-D62D137725EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1AA32304-81C0-4922-9FBE-D62D137725EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1AA32304-81C0-4922-9FBE-D62D137725EE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0DA2D372-16E7-4220-8B55-B0708F17A9B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0DA2D372-16E7-4220-8B55-B0708F17A9B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0DA2D372-16E7-4220-8B55-B0708F17A9B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0DA2D372-16E7-4220-8B55-B0708F17A9B3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

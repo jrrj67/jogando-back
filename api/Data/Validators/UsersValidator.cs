@@ -1,24 +1,24 @@
 ﻿using FluentValidation;
 using JogandoBack.API.Data.Models.Requests;
 using JogandoBack.API.Data.Models.Responses;
+using JogandoBack.API.Data.Repositories.Users;
 using JogandoBack.API.Data.Services;
-using JogandoBack.API.Data.Services.Users;
 using Microsoft.AspNetCore.Http;
 
 namespace JogandoBack.API.Data.Validators
 {
     public class UsersValidator : AbstractValidator<UsersRequest>
     {
-        private readonly IUsersService<UsersResponse, UsersRequest> _usersService;
+        private readonly IUsersRepository _usersRepository;
 
         private readonly IBaseService<RolesResponse, RolesRequest> _rolesService;
 
         private readonly IHttpContextAccessor _httpContexAccessor;
 
-        public UsersValidator(IUsersService<UsersResponse, UsersRequest> usersService, IHttpContextAccessor httpContexAccessor,
-            IBaseService<RolesResponse, RolesRequest> rolesService)
+        public UsersValidator(IHttpContextAccessor httpContexAccessor, IBaseService<RolesResponse, RolesRequest> rolesService,
+            IUsersRepository usersRepository)
         {
-            _usersService = usersService;
+            _usersRepository = usersRepository;
 
             _httpContexAccessor = httpContexAccessor;
 
@@ -40,7 +40,7 @@ namespace JogandoBack.API.Data.Validators
                 .EmailAddress()
                 .NotNull()
                 .MaximumLength(100)
-                .Must(email => _usersService.IsUniqueEmail(email, userId))
+                .Must(email => _usersRepository.IsUniqueEmail(email, userId))
                     .WithMessage("Email already exists.");
 
             RuleFor(field => field.RoleId)

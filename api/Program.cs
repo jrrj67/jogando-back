@@ -1,6 +1,7 @@
 using FluentValidation.AspNetCore;
 using JogandoBack.API.Data.Config.Contexts;
 using JogandoBack.API.Data.Config.DependecyInjections;
+using JogandoBack.API.Data.Middlewares;
 using JogandoBack.API.Data.Models.Seeds;
 using JogandoBack.API.Data.Services.Token;
 using MicroElements.Swashbuckle.FluentValidation.AspNetCore;
@@ -143,11 +144,13 @@ namespace JogandoBack.API
 
                 app.UseAuthorization();
 
+                app.UseMiddleware<RequestLoggingMiddleware>();
+
                 app.UseEndpoints(endpoints =>
                 {
                     endpoints.MapControllers();
                 });
-
+               
                 Log.Information("Applying migrations.");
 
                 Migrate(app);

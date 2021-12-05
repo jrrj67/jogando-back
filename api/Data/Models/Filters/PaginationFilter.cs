@@ -13,7 +13,7 @@
         public PaginationFilter(int pageNumber = 1, int pageSize = 10)
         {
             this.PageNumber = pageNumber < 1 ? 1 : pageNumber;
-            this.PageSize = pageSize > _pageMaxSize ? 10 : pageSize;
+            this.PageSize = pageSize > _pageMaxSize || pageSize < 1 ? 10 : pageSize;
         }
     }
 }

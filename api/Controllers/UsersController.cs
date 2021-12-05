@@ -1,9 +1,10 @@
 ﻿using AutoMapper;
+using JogandoBack.API.Data.Models.Entities;
 using JogandoBack.API.Data.Models.Filters;
 using JogandoBack.API.Data.Models.Requests;
 using JogandoBack.API.Data.Models.Responses;
 using JogandoBack.API.Data.Repositories.Users;
-using JogandoBack.API.Data.Services.Users;
+using JogandoBack.API.Data.Services.PasswordHasher;
 using JogandoBack.API.Data.Utils;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -18,16 +19,15 @@ namespace JogandoBack.API.Controllers
     public class UsersController : ControllerBase
     {
         private readonly IMapper _mapper;
+        private readonly IPasswordHasher _passwordHasher;
         private readonly ILogger<UsersController> _logger;
         private readonly IUsersRepository _usersRepository;
-        private readonly IUsersService<UsersResponse, UsersRequest> _usersService;
 
-        public UsersController(ILogger<UsersController> logger, IUsersService<UsersResponse, UsersRequest> usersService, IMapper mapper,
-            IUsersRepository usersRepository)
+        public UsersController(ILogger<UsersController> logger, IMapper mapper, IUsersRepository usersRepository, IPasswordHasher passwordHasher)
         {
             _mapper = mapper;
             _logger = logger;
-            _usersService = usersService;
+            _passwordHasher = passwordHasher;
             _usersRepository = usersRepository;
         }
 
@@ -50,7 +50,7 @@ namespace JogandoBack.API.Controllers
             {
                 _logger.LogError(ex, ex.Message);
 
-                return BadRequest(ex.Message);
+                return BadRequest(new Response<string>(null, ex.Message));
             }
         }
 
@@ -59,19 +59,21 @@ namespace JogandoBack.API.Controllers
         {
             try
             {
-                return Ok(_usersService.GetById(id));
+                var userEntity = _usersRepository.GetById(id);
+
+                var response = _mapper.Map<UsersResponse>(userEntity);
+
+                return Ok(new Response<UsersResponse>(response));
             }
             catch (ArgumentException ex)
             {
-                _logger.LogError(ex, ex.Message);
-
-                return NotFound(ex.Message);
+                return NotFound(new Response<string>(null, ex.Message));
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, ex.Message);
 
-                return BadRequest(ex.Message);
+                return BadRequest(new Response<string>(null, ex.Message));
             }
         }
 
@@ -80,15 +82,19 @@ namespace JogandoBack.API.Controllers
         {
             try
             {
-                var response = await _usersService.SaveAsync(request);
+                var userEntity = _mapper.Map<UsersEntity>(request);
 
-                return Created(HttpContext.Request.GetAbsoluteUri() + $"/{response.Id}", "Created.");
+                userEntity.Password = _passwordHasher.HashPassword(userEntity.Password);
+
+                await _usersRepository.SaveAsync(userEntity);
+
+                return Created(HttpContext.Request.GetAbsoluteUri() + $"/{userEntity.Id}", new Response<string>(null, "Created"));
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, ex.Message);
 
-                return BadRequest(ex.Message);
+                return BadRequest(new Response<string>(null, ex.Message));
             }
         }
 
@@ -97,21 +103,23 @@ namespace JogandoBack.API.Controllers
         {
             try
             {
-                await _usersService.UpdateAsync(id, request);
+                var userEntity = _mapper.Map<UsersEntity>(request);
 
-                return Ok("Updated.");
+                userEntity.Password = _passwordHasher.HashPassword(userEntity.Password);
+
+                await _usersRepository.UpdateAsync(id, userEntity);
+
+                return Ok(new Response<string>(null, "Updated."));
             }
             catch (ArgumentException ex)
             {
-                _logger.LogError(ex, ex.Message);
-
-                return NotFound(ex.Message);
+                return NotFound(new Response<string>(null, ex.Message));
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, ex.Message);
 
-                return BadRequest(ex.Message);
+                return BadRequest(new Response<string>(null, ex.Message));
             }
         }
 
@@ -120,21 +128,19 @@ namespace JogandoBack.API.Controllers
         {
             try
             {
-                await _usersService.DeleteAsync(id);
+                await _usersRepository.DeleteAsync(id);
 
-                return Ok("Deleted.");
+                return Ok(new Response<string>(null, "Deleted."));
             }
             catch (ArgumentException ex)
             {
-                _logger.LogError(ex, ex.Message);
-
-                return NotFound(ex.Message);
+                return NotFound(new Response<string>(null, ex.Message));
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, ex.Message);
 
-                return BadRequest(ex.Message);
+                return BadRequest(new Response<string>(null, ex.Message));
             }
         }
     }

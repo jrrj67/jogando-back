@@ -14,8 +14,7 @@ namespace JogandoBack.API.Data.Models.Responses
         public Uri NextPage { get; set; }
         public Uri PreviousPage { get; set; }
 
-        public PagedResponse(T data, int pageNumber, int pageSize, string message = null, ICollection<string> errors = null, bool succeeded = true)
-            : base(data, message, errors, succeeded)
+        public PagedResponse(T data, int pageNumber, int pageSize, string message = null, ICollection<string> errors = null) : base(data, message, errors)
         {
             this.PageNumber = pageNumber;
             this.PageSize = pageSize;
