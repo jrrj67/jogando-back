@@ -165,7 +165,6 @@ namespace JogandoBack.API
             }
             catch (Exception ex)
             {
-
                 Log.Fatal(ex, "Host terminated unexpectedly.");
             }
             finally

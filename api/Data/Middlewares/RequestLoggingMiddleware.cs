@@ -31,7 +31,7 @@ namespace JogandoBack.API.Data.Middlewares
 
                 var requestContent = Encoding.UTF8.GetString(buffer);
 
-                _diagnosticContext.Set("requestBody", requestContent);
+                _diagnosticContext.Set("RequestBody", requestContent);
 
                 request.Body.Position = 0;
             }
