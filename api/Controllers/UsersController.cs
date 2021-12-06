@@ -6,6 +6,7 @@ using JogandoBack.API.Data.Models.Requests;
 using JogandoBack.API.Data.Models.Responses;
 using JogandoBack.API.Data.Repositories.Users;
 using JogandoBack.API.Data.Services.PasswordHasher;
+using JogandoBack.API.Data.Services.Uri;
 using JogandoBack.API.Data.Utils;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -23,13 +24,16 @@ namespace JogandoBack.API.Controllers
         private readonly IPasswordHasher _passwordHasher;
         private readonly ILogger<UsersController> _logger;
         private readonly IUsersRepository _usersRepository;
+        private readonly IUriService _uriService;
 
-        public UsersController(ILogger<UsersController> logger, IMapper mapper, IUsersRepository usersRepository, IPasswordHasher passwordHasher)
+        public UsersController(ILogger<UsersController> logger, IMapper mapper, IUsersRepository usersRepository, IPasswordHasher passwordHasher,
+            IUriService uriService)
         {
             _mapper = mapper;
             _logger = logger;
             _passwordHasher = passwordHasher;
             _usersRepository = usersRepository;
+            _uriService = uriService;
         }
 
         [HttpGet]
@@ -37,15 +41,17 @@ namespace JogandoBack.API.Controllers
         {
             try
             {
+                var route = Request.Path.Value;
+
                 var validPaginationFilter = new PaginationFilter(paginationFilter.PageNumber, paginationFilter.PageSize);
 
                 var usersEntity = _usersRepository.GetAll(validPaginationFilter, usersFilter);
 
                 var response = _mapper.Map<List<UsersResponse>>(usersEntity);
 
-                var totalRecords = response.Count;
+                var totalRecords = _usersRepository.GetAll().Count;
 
-                return Ok(new PagedResponse<List<UsersResponse>>(response, validPaginationFilter.PageNumber, validPaginationFilter.PageSize));
+                return Ok(PaginationHelper.CreatePagedReponse(response, validPaginationFilter, totalRecords, _uriService, route));
             }
             catch (Exception ex)
             {

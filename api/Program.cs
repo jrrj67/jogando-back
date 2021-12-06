@@ -118,6 +118,8 @@ namespace JogandoBack.API
 
                 RefreshTokensDI.RegisterDependencies(builder.Services);
 
+                UriDI.RegisterDependencies(builder.Services);
+
                 Log.Information("Building application.");
 
                 var app = builder.Build();
