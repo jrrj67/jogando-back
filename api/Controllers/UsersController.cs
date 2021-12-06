@@ -46,9 +46,7 @@ namespace JogandoBack.API.Controllers
             {
                 var route = Request.Path.Value;
 
-                var filtersList = usersFilter.GetType()
-                    .GetProperties(BindingFlags.Instance | BindingFlags.Public)
-                    .ToDictionary(prop => prop.Name, prop => (string)prop.GetValue(usersFilter, null));
+                var filtersList = usersFilter.ToDictionary();
                
                 var validPaginationFilter = new PaginationFilter(paginationFilter.PageNumber, paginationFilter.PageSize);
 
