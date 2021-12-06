@@ -15,7 +15,7 @@ namespace JogandoBack.API.Data.Repositories.Users
         {
         }
 
-        public List<UsersEntity> GetAll(PaginationFilter filter, UsersFilter usersFilter)
+        public List<UsersEntity> GetAll(UsersFilter usersFilter, PaginationFilter paginationFilter = null)
         {
             var users = _context.Set<UsersEntity>()
                 .Include(u => u.Role)
@@ -26,9 +26,14 @@ namespace JogandoBack.API.Data.Repositories.Users
                 users = users.Where(u => u.Name.Contains(usersFilter.Name, StringComparison.InvariantCultureIgnoreCase)).ToList();
             }
 
-            return users
-                .Skip((filter.PageNumber - 1) * filter.PageSize)
-                .Take(filter.PageSize).ToList();
+            if (paginationFilter != null)
+            {
+                return users
+                .Skip((paginationFilter.PageNumber - 1) * paginationFilter.PageSize)
+                .Take(paginationFilter.PageSize).ToList();
+            }
+
+            return users;
         }
 
         public override UsersEntity GetById(int id)

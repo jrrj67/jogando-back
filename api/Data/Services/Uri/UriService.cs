@@ -12,11 +12,14 @@ namespace JogandoBack.API.Data.Services.Uri
             _baseUri = baseUri;
         }
 
-        public System.Uri GetPageUri(PaginationFilter filter, string route)
+        public System.Uri GetPageUri(PaginationFilter paginationFilter, string route)
         {
             var _enpointUri = new System.Uri(string.Concat(_baseUri, route));
-            var modifiedUri = QueryHelpers.AddQueryString(_enpointUri.ToString(), "pageNumber", filter.PageNumber.ToString());
-            modifiedUri = QueryHelpers.AddQueryString(modifiedUri, "pageSize", filter.PageSize.ToString());
+
+            var modifiedUri = QueryHelpers.AddQueryString(_enpointUri.ToString(), "pageNumber", paginationFilter.PageNumber.ToString());
+
+            modifiedUri = QueryHelpers.AddQueryString(modifiedUri, "pageSize", paginationFilter.PageSize.ToString());
+
             return new System.Uri(modifiedUri);
         }
     }

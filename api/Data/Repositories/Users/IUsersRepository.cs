@@ -7,7 +7,7 @@ namespace JogandoBack.API.Data.Repositories.Users
 {
     public interface IUsersRepository : IBaseRepository<UsersEntity>
     {
-        List<UsersEntity> GetAll(PaginationFilter filter, UsersFilter usersFilter);
+        List<UsersEntity> GetAll(UsersFilter usersFilter, PaginationFilter paginationFilter = null);
         bool IsUniqueEmail(string email, int userId);
         UsersEntity GetUserByEmail(string email);
     }

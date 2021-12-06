@@ -45,11 +45,11 @@ namespace JogandoBack.API.Controllers
 
                 var validPaginationFilter = new PaginationFilter(paginationFilter.PageNumber, paginationFilter.PageSize);
 
-                var usersEntity = _usersRepository.GetAll(validPaginationFilter, usersFilter);
+                var usersEntity = _usersRepository.GetAll(usersFilter, validPaginationFilter);
 
                 var response = _mapper.Map<List<UsersResponse>>(usersEntity);
 
-                var totalRecords = _usersRepository.GetAll().Count;
+                var totalRecords = _usersRepository.GetAll(usersFilter).Count;
 
                 return Ok(PaginationHelper.CreatePagedReponse(response, validPaginationFilter, totalRecords, _uriService, route));
             }
