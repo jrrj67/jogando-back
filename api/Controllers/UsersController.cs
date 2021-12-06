@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using JogandoBack.API.Data.Models.Entities;
 using JogandoBack.API.Data.Models.Filters;
+using JogandoBack.API.Data.Models.Filters.Users;
 using JogandoBack.API.Data.Models.Requests;
 using JogandoBack.API.Data.Models.Responses;
 using JogandoBack.API.Data.Repositories.Users;
@@ -32,19 +33,19 @@ namespace JogandoBack.API.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAll([FromQuery] PaginationFilter filter)
+        public IActionResult GetAll([FromQuery] PaginationFilter paginationFilter, [FromQuery] UsersFilter usersFilter)
         {
             try
             {
-                var validFilter = new PaginationFilter(filter.PageNumber, filter.PageSize);
+                var validPaginationFilter = new PaginationFilter(paginationFilter.PageNumber, paginationFilter.PageSize);
 
-                var usersEntity = _usersRepository.GetAll(validFilter);
+                var usersEntity = _usersRepository.GetAll(validPaginationFilter, usersFilter);
 
                 var response = _mapper.Map<List<UsersResponse>>(usersEntity);
 
                 var totalRecords = response.Count;
 
-                return Ok(new PagedResponse<List<UsersResponse>>(response, filter.PageNumber, filter.PageSize));
+                return Ok(new PagedResponse<List<UsersResponse>>(response, validPaginationFilter.PageNumber, validPaginationFilter.PageSize));
             }
             catch (Exception ex)
             {

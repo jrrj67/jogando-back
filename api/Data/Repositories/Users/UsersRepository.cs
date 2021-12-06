@@ -1,6 +1,7 @@
 ﻿using JogandoBack.API.Data.Config.Contexts;
 using JogandoBack.API.Data.Models.Entities;
 using JogandoBack.API.Data.Models.Filters;
+using JogandoBack.API.Data.Models.Filters.Users;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -14,13 +15,20 @@ namespace JogandoBack.API.Data.Repositories.Users
         {
         }
 
-        public List<UsersEntity> GetAll(PaginationFilter filter)
+        public List<UsersEntity> GetAll(PaginationFilter filter, UsersFilter usersFilter)
         {
-            return _context.Set<UsersEntity>()
+            var users = _context.Set<UsersEntity>()
                 .Include(u => u.Role)
-                .Skip((filter.PageNumber - 1) * filter.PageSize)
-                .Take(filter.PageSize)
                 .ToList();
+
+            if (usersFilter.Name != null)
+            {
+                users = users.Where(u => u.Name.Contains(usersFilter.Name, StringComparison.InvariantCultureIgnoreCase)).ToList();
+            }
+
+            return users
+                .Skip((filter.PageNumber - 1) * filter.PageSize)
+                .Take(filter.PageSize).ToList();
         }
 
         public override UsersEntity GetById(int id)
