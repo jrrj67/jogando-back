@@ -1,8 +1,7 @@
 ﻿using FluentValidation;
 using JogandoBack.API.Data.Models.Requests;
-using JogandoBack.API.Data.Models.Responses;
+using JogandoBack.API.Data.Repositories.Roles;
 using JogandoBack.API.Data.Repositories.Users;
-using JogandoBack.API.Data.Services;
 using Microsoft.AspNetCore.Http;
 
 namespace JogandoBack.API.Data.Validators
@@ -11,18 +10,17 @@ namespace JogandoBack.API.Data.Validators
     {
         private readonly IUsersRepository _usersRepository;
 
-        private readonly IBaseService<RolesResponse, RolesRequest> _rolesService;
+        private readonly IRolesRepository _rolesRepository;
 
         private readonly IHttpContextAccessor _httpContexAccessor;
 
-        public UsersValidator(IHttpContextAccessor httpContexAccessor, IBaseService<RolesResponse, RolesRequest> rolesService,
-            IUsersRepository usersRepository)
+        public UsersValidator(IHttpContextAccessor httpContexAccessor, IUsersRepository usersRepository, IRolesRepository rolesRepository)
         {
             _usersRepository = usersRepository;
 
             _httpContexAccessor = httpContexAccessor;
 
-            _rolesService = rolesService;
+            _rolesRepository = rolesRepository;
 
             int userId = GetUserIdFromPath(_httpContexAccessor.HttpContext.Request.Path.Value);
 
@@ -44,7 +42,7 @@ namespace JogandoBack.API.Data.Validators
                     .WithMessage("Email already exists.");
 
             RuleFor(field => field.RoleId)
-                .Must(roleId => _rolesService.Exists(roleId))
+                .Must(roleId => _rolesRepository.Exists(roleId))
                     .WithMessage("Role doesn't exist.")
                 .NotNull();
         }

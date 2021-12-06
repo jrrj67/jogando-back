@@ -1,8 +1,8 @@
 ﻿using JogandoBack.API.Data.Models.Requests;
 using JogandoBack.API.Data.Models.Responses;
+using JogandoBack.API.Data.Repositories.RefreshTokens;
 using JogandoBack.API.Data.Repositories.Users;
 using JogandoBack.API.Data.Services.Login;
-using JogandoBack.API.Data.Services.RefreshTokensEntityService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -19,19 +19,18 @@ namespace JogandoBack.API.Controllers
     {
         private readonly ILogger<AuthenticationController> _logger;
         private readonly ILoginService<LoginResponse, LoginRequest> _loginService;
-        private readonly IRefreshTokensEntityService<RefreshTokensResponse, RefreshTokensRequest> _refreshTokensEntityService;
         private readonly IDiagnosticContext _diagnosticContext;
-        private readonly IUsersRepository _repository;
+        private readonly IUsersRepository _usersRepository;
+        private readonly IRefreshTokensRepository _refreshTokenRepository;
 
         public AuthenticationController(ILogger<AuthenticationController> logger, ILoginService<LoginResponse, LoginRequest> loginService,
-            IDiagnosticContext diagnosticContext, IRefreshTokensEntityService<RefreshTokensResponse, RefreshTokensRequest> refreshTokensEntityService,
-            IUsersRepository repository)
+            IDiagnosticContext diagnosticContext, IUsersRepository repository, IRefreshTokensRepository refreshTokenRepository)
         {
             _logger = logger;
             _loginService = loginService;
             _diagnosticContext = diagnosticContext;
-            _refreshTokensEntityService = refreshTokensEntityService;
-            _repository = repository;
+            _usersRepository = repository;
+            _refreshTokenRepository = refreshTokenRepository;
         }
 
         [HttpPost("login")]
@@ -47,7 +46,7 @@ namespace JogandoBack.API.Controllers
 
                 _logger.LogInformation("User logged in.");
 
-                return Ok(response);
+                return Ok(new Response<LoginResponse>(response));
             }
             catch (Exception ex)
             {
@@ -60,25 +59,25 @@ namespace JogandoBack.API.Controllers
         [HttpPost("refresh")]
         public async Task<IActionResult> Refresh(RefreshTokensBaseRequest refreshTokenRequest)
         {
-            var refreshToken = _refreshTokensEntityService.GetByToken(refreshTokenRequest.Token);
+            var refreshToken = _refreshTokenRepository.GetByToken(refreshTokenRequest.Token);
 
             if (refreshToken == null)
             {
-                return NotFound("Token not found.");
+                return NotFound(new Response<string>(null, "Token not found."));
             }
 
-            await _refreshTokensEntityService.DeleteAsync(refreshToken.Id);
+            await _refreshTokenRepository.DeleteAsync(refreshToken.Id);
 
-            var user = _repository.GetById(refreshToken.UserId);
+            var user = _usersRepository.GetById(refreshToken.UserId);
 
             if (user == null)
             {
-                return NotFound("User not found.");
+                return NotFound(new Response<string>(null, "User not found."));
             }
 
             var response = await _loginService.Authenticate(user);
 
-            return Ok(response);
+            return Ok(new Response<LoginResponse>(response));
         }
 
         [HttpDelete("logout")]
@@ -89,20 +88,19 @@ namespace JogandoBack.API.Controllers
             {
                 var userId = Convert.ToInt32(HttpContext.User.FindFirstValue("id"));
 
-                var token = _refreshTokensEntityService.GetByUserId(userId);
+                var token = _refreshTokenRepository.GetByUserId(userId);
 
                 if (token == null)
                 {
-                    return NotFound("Token not found.");
+                    return NotFound(new Response<string>(null, "Token not found."));
                 }
 
-                await _refreshTokensEntityService.DeleteAsync(token.Id);
+                await _refreshTokenRepository.DeleteAsync(token.Id);
 
-                return Ok("User logged out.");
+                return Ok(new Response<string>(null, "User logged out."));
             }
             catch (Exception)
             {
-
                 return Unauthorized();
             }
         }

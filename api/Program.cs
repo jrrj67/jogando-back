@@ -150,7 +150,7 @@ namespace JogandoBack.API
                 {
                     endpoints.MapControllers();
                 });
-               
+
                 Log.Information("Applying migrations.");
 
                 Migrate(app);

@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Serilog;
 using System;
-using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -27,16 +26,16 @@ namespace JogandoBack.API.Data.Middlewares
                 request.EnableBuffering();
 
                 var buffer = new byte[Convert.ToInt32(request.ContentLength)];
-            
+
                 await request.Body.ReadAsync(buffer, 0, buffer.Length);
-            
+
                 var requestContent = Encoding.UTF8.GetString(buffer);
 
                 _diagnosticContext.Set("requestBody", requestContent);
 
                 request.Body.Position = 0;
             }
-            
+
             await _next(context);
         }
     }

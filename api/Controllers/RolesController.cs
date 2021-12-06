@@ -1,13 +1,16 @@
-﻿using JogandoBack.API.Data.Models.Constants;
+﻿using AutoMapper;
+using JogandoBack.API.Data.Models.Constants;
+using JogandoBack.API.Data.Models.Entities;
 using JogandoBack.API.Data.Models.Requests;
 using JogandoBack.API.Data.Models.Responses;
-using JogandoBack.API.Data.Services;
+using JogandoBack.API.Data.Repositories;
 using JogandoBack.API.Data.Utils;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace JogandoBack.API.Controllers
@@ -16,13 +19,15 @@ namespace JogandoBack.API.Controllers
     [Route("api/roles")]
     public class RolesController : ControllerBase
     {
+        private readonly IMapper _mapper;
         private readonly ILogger<RolesController> _logger;
-        private readonly IBaseService<RolesResponse, RolesRequest> _rolesService;
+        private readonly IBaseRepository<RolesEntity> _rolesRepository;
 
-        public RolesController(ILogger<RolesController> logger, IBaseService<RolesResponse, RolesRequest> rolesService)
+        public RolesController(ILogger<RolesController> logger, IBaseRepository<RolesEntity> rolesRepository, IMapper mapper)
         {
+            _mapper = mapper;
             _logger = logger;
-            _rolesService = rolesService;
+            _rolesRepository = rolesRepository;
         }
 
         [HttpGet]
@@ -31,13 +36,17 @@ namespace JogandoBack.API.Controllers
         {
             try
             {
-                return Ok(_rolesService.GetAll());
+                var rolesEntity = _rolesRepository.GetAll();
+
+                var response = _mapper.Map<List<RolesResponse>>(rolesEntity);
+
+                return Ok(new Response<List<RolesResponse>>(response));
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, ex.Message);
 
-                return BadRequest(ex.Message);
+                return BadRequest(new Response<string>(null, ex.Message));
             }
         }
 
@@ -47,12 +56,14 @@ namespace JogandoBack.API.Controllers
         {
             try
             {
-                return Ok(_rolesService.GetById(id));
+                var rolesEntity = _rolesRepository.GetById(id);
+
+                var response = _mapper.Map<UsersResponse>(rolesEntity);
+
+                return Ok(new Response<UsersResponse>(response));
             }
             catch (ArgumentException ex)
             {
-                _logger.LogError(ex, ex.Message);
-
                 return NotFound(ex.Message);
             }
             catch (Exception ex)
@@ -69,8 +80,11 @@ namespace JogandoBack.API.Controllers
         {
             try
             {
-                var response = await _rolesService.SaveAsync(request);
-                return Created(HttpContext.Request.GetAbsoluteUri() + $"/{response.Id}", "Created.");
+                var roleEntity = _mapper.Map<RolesEntity>(request);
+
+                await _rolesRepository.SaveAsync(roleEntity);
+
+                return Created(HttpContext.Request.GetAbsoluteUri() + $"/{roleEntity.Id}", new Response<string>(null, "Created."));
             }
             catch (Exception ex)
             {
@@ -86,13 +100,14 @@ namespace JogandoBack.API.Controllers
         {
             try
             {
-                await _rolesService.UpdateAsync(id, request);
-                return Ok("Updated.");
+                var roleEntity = _mapper.Map<RolesEntity>(request);
+
+                await _rolesRepository.UpdateAsync(id, roleEntity);
+
+                return Ok(new Response<string>(null, "Updated."));
             }
             catch (ArgumentException ex)
             {
-                _logger.LogError(ex, ex.Message); ;
-
                 return NotFound(ex.Message);
             }
             catch (Exception ex)
@@ -109,14 +124,12 @@ namespace JogandoBack.API.Controllers
         {
             try
             {
-                await _rolesService.DeleteAsync(id);
+                await _rolesRepository.DeleteAsync(id);
 
-                return Ok("Deleted.");
+                return Ok(new Response<string>(null, "Deleted."));
             }
             catch (ArgumentException ex)
             {
-                _logger.LogError(ex, ex.Message);
-
                 return NotFound(ex.Message);
             }
             catch (Exception ex)
