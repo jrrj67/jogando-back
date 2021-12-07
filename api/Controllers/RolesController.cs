@@ -46,7 +46,7 @@ namespace JogandoBack.API.Controllers
             {
                 _logger.LogError(ex, ex.Message);
 
-                return BadRequest(new Response<string>(null, ex.Message));
+                return BadRequest(new Response<string>(null, ErrorsConstants.getData));
             }
         }
 
@@ -64,13 +64,13 @@ namespace JogandoBack.API.Controllers
             }
             catch (ArgumentException ex)
             {
-                return NotFound(ex.Message);
+                return NotFound(new Response<string>(null, ex.Message));
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, ex.Message);
 
-                return BadRequest(ex.Message);
+                return BadRequest(new Response<string>(null, ErrorsConstants.getData));
             }
         }
 
@@ -84,13 +84,13 @@ namespace JogandoBack.API.Controllers
 
                 await _rolesRepository.SaveAsync(roleEntity);
 
-                return Created(HttpContext.Request.GetAbsoluteUri() + $"/{roleEntity.Id}", new Response<string>(null, "Created."));
+                return Created(HttpContext.Request.GetAbsoluteUri() + $"/{roleEntity.Id}", new Response<string>(null, MessagesConstants.created));
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, ex.Message);
 
-                return BadRequest(ex.Message);
+                return BadRequest(new Response<string>(null, ErrorsConstants.saveData));
             }
         }
 
@@ -104,17 +104,17 @@ namespace JogandoBack.API.Controllers
 
                 await _rolesRepository.UpdateAsync(id, roleEntity);
 
-                return Ok(new Response<string>(null, "Updated."));
+                return Ok(new Response<string>(null, MessagesConstants.updated));
             }
             catch (ArgumentException ex)
             {
-                return NotFound(ex.Message);
+                return NotFound(new Response<string>(null, ex.Message));
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, ex.Message);
 
-                return BadRequest(ex.Message);
+                return BadRequest(new Response<string>(null, ErrorsConstants.updateData));
             }
         }
 
@@ -126,17 +126,17 @@ namespace JogandoBack.API.Controllers
             {
                 await _rolesRepository.DeleteAsync(id);
 
-                return Ok(new Response<string>(null, "Deleted."));
+                return Ok(new Response<string>(null, MessagesConstants.deleted));
             }
             catch (ArgumentException ex)
             {
-                return NotFound(ex.Message);
+                return NotFound(new Response<string>(null, ex.Message));
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, ex.Message);
 
-                return BadRequest(ex.Message);
+                return BadRequest(new Response<string>(null, ErrorsConstants.deleteData));
             }
         }
     }

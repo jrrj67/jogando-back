@@ -52,32 +52,41 @@ namespace JogandoBack.API.Controllers
             {
                 _logger.LogError(ex, ex.Message);
 
-                return Unauthorized(ex.Message);
+                return Unauthorized("A problem occured while attempting to login.");
             }
         }
 
         [HttpPost("refresh")]
         public async Task<IActionResult> Refresh(RefreshTokensBaseRequest refreshTokenRequest)
         {
-            var refreshToken = _refreshTokenRepository.GetByToken(refreshTokenRequest.Token);
-
-            if (refreshToken == null)
+            try
             {
-                return NotFound(new Response<string>(null, "Token not found."));
+                var refreshToken = _refreshTokenRepository.GetByToken(refreshTokenRequest.Token);
+
+                if (refreshToken == null)
+                {
+                    return NotFound(new Response<string>(null, "Token not found."));
+                }
+
+                await _refreshTokenRepository.DeleteAsync(refreshToken.Id);
+
+                var user = _usersRepository.GetById(refreshToken.UserId);
+
+                if (user == null)
+                {
+                    return NotFound(new Response<string>(null, "User not found."));
+                }
+
+                var response = await _loginService.Authenticate(user);
+
+                return Ok(new Response<LoginResponse>(response));
             }
-
-            await _refreshTokenRepository.DeleteAsync(refreshToken.Id);
-
-            var user = _usersRepository.GetById(refreshToken.UserId);
-
-            if (user == null)
+            catch (Exception ex)
             {
-                return NotFound(new Response<string>(null, "User not found."));
+                _logger.LogError(ex, ex.Message);
+
+                return Unauthorized("A problem occured while attempting to refresh the token.");
             }
-
-            var response = await _loginService.Authenticate(user);
-
-            return Ok(new Response<LoginResponse>(response));
         }
 
         [HttpDelete("logout")]
@@ -99,9 +108,11 @@ namespace JogandoBack.API.Controllers
 
                 return Ok(new Response<string>(null, "User logged out."));
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return Unauthorized();
+                _logger.LogError(ex, ex.Message);
+
+                return Unauthorized("A problem occured while attempting to logout.");
             }
         }
     }
