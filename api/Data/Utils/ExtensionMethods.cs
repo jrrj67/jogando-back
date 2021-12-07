@@ -1,5 +1,4 @@
-﻿using JogandoBack.API.Data.Models.Filters.Users;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +17,7 @@ namespace JogandoBack.API.Data.Utils
             uriBuilder.Query = request.QueryString.ToString();
             return uriBuilder.Uri.ToString();
         }
-        
+
         public static Dictionary<string, string> ToDictionary(this object source)
         {
             return source.GetType()

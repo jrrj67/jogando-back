@@ -9,12 +9,10 @@ using JogandoBack.API.Data.Services.PasswordHasher;
 using JogandoBack.API.Data.Services.Uri;
 using JogandoBack.API.Data.Utils;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Threading.Tasks;
 
 namespace JogandoBack.API.Controllers
@@ -47,7 +45,7 @@ namespace JogandoBack.API.Controllers
                 var route = Request.Path.Value;
 
                 var filtersList = usersFilter.ToDictionary();
-               
+
                 var validPaginationFilter = new PaginationFilter(paginationFilter.PageNumber, paginationFilter.PageSize);
 
                 var usersEntity = _usersRepository.GetAll(usersFilter, validPaginationFilter);

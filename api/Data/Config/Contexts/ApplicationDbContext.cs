@@ -16,20 +16,8 @@ namespace JogandoBack.API.Data.Config.Contexts
         public DbSet<RolesEntity> Roles { get; set; }
         public DbSet<RefreshTokensEntity> RefreshTokens { get; set; }
 
-        public ApplicationDbContext()
+        public ApplicationDbContext(DbContextOptions options) : base(options)
         {
-        }
-
-        public ApplicationDbContext(DbContextOptions options, IConfiguration configuration) : base(options)
-        {
-            Configuration = configuration;
-        }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer(Configuration.GetConnectionString("Default"));
-
-            base.OnConfiguring(optionsBuilder);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
