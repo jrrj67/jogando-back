@@ -4,6 +4,7 @@ using JogandoBack.API.Data.Models.Entities;
 using JogandoBack.API.Data.Models.Requests;
 using JogandoBack.API.Data.Models.Responses;
 using JogandoBack.API.Data.Repositories;
+using JogandoBack.API.Data.Repositories.Roles;
 using JogandoBack.API.Data.Utils;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -21,9 +22,9 @@ namespace JogandoBack.API.Controllers
     {
         private readonly IMapper _mapper;
         private readonly ILogger<RolesController> _logger;
-        private readonly IBaseRepository<RolesEntity> _rolesRepository;
+        private readonly IRolesRepository _rolesRepository;
 
-        public RolesController(ILogger<RolesController> logger, IBaseRepository<RolesEntity> rolesRepository, IMapper mapper)
+        public RolesController(ILogger<RolesController> logger, IRolesRepository rolesRepository, IMapper mapper)
         {
             _mapper = mapper;
             _logger = logger;
